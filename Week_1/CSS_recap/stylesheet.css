@@ -1,0 +1,27 @@
+body {
+  font-family:
+    'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans',
+    Arial, sans-serif;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #f50b0b;
+  text-decoration: none;
+}
+
+img {
+  border-radius: 25px;
+  border: 10px solid transparent;
+}
+
+tr:nth-child(odd) {
+  color: #f50b0b;
+}
+
+li {
+  list-style-type: square;
+}
