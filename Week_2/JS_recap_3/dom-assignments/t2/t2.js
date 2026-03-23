@@ -41,8 +41,8 @@ for (const todo of todoList) {
   }
 
   label.textContent = todo.task;
-  label.appendChild(input);
+  label.htmlFor = 'todo-' + todo.id;
 
-  li.appendChild(label);
+  li.append(input, label);
   ul.appendChild(li);
 }
