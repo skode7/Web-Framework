@@ -30,7 +30,7 @@ const todoList = [
 const ul = document.querySelector('ul');
 
 for (const todo of todoList) {
-  const label = document.createElement('label');
+  /*const label = document.createElement('label');
   const input = document.createElement('input');
   const li = document.createElement('li');
 
@@ -44,6 +44,14 @@ for (const todo of todoList) {
   label.textContent = todo.task;
   label.appendChild(input);
 
-  li.appendChild(label);
-  ul.appendChild(li);
+  li.appendChild(label);*/
+
+  ul.insertAdjacentHTML(
+    'afterbegin',
+    `<li>
+      <label>${todo.task}
+        <input id="todo-"${todo.id} type="checkbox" ${todo.completed ? 'checked' : ''}>
+      </label>
+    </li>`
+  );
 }
