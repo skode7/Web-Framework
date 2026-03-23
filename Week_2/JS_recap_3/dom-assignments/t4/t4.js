@@ -770,4 +770,43 @@ const restaurants = [
   },
 ];
 
-// your code here
+// Get current coordinates if location is allowed
+navigator.geolocation.getCurrentPosition(position => {
+  const lat = position.coords.latitude;
+  const lon = position.coords.longitude;
+  sortByDistance(lat, lon);
+  showRestaurantsToUser();
+});
+
+// Sort the array by distance between currenct location and restaurant
+// Parameter values are coordinates of current location
+function sortByDistance(lat, lon) {
+  restaurants.sort((rest1, rest2) => {
+    let d1 = Math.sqrt(
+      (lon - rest1.location.coordinates[0]) ** 2 +
+        (lat - rest1.location.coordinates[1]) ** 2
+    );
+
+    let d2 = Math.sqrt(
+      (lon - rest2.location.coordinates[0]) ** 2 +
+        (lat - rest2.location.coordinates[1]) ** 2
+    );
+    return d1 - d2;
+  });
+}
+
+const table = document.querySelector('table');
+
+function showRestaurantsToUser() {
+  restaurants.forEach(restaurant => {
+    const tr = document.createElement('tr');
+    const td1 = document.createElement('td');
+    const td2 = document.createElement('td');
+
+    td1.textContent = restaurant.name;
+    td2.textContent = restaurant.address;
+
+    tr.append(td1, td2);
+    table.appendChild(tr);
+  });
+}
