@@ -34,7 +34,7 @@ const ul = document.querySelector('ul');
 function showTodoList() {
   for (const todo of todoList) {
     const label = document.createElement('label');
-    const input = document.createElement('input');
+    const checkboxInput = document.createElement('input');
     const li = document.createElement('li');
     const deleteBtn = document.createElement('button');
 
@@ -44,9 +44,9 @@ function showTodoList() {
 
     deleteBtn.textContent = 'delete';
 
-    input.id = todo.id;
-    input.type = 'checkbox';
-    input.addEventListener('click', event => {
+    checkboxInput.id = todo.id;
+    checkboxInput.type = 'checkbox';
+    checkboxInput.addEventListener('click', event => {
       todo.completed = !todo.completed;
       console.log(
         'Clicked ' + todo.task + ', completed is now: ' + todo.completed
@@ -54,21 +54,21 @@ function showTodoList() {
     });
 
     if (todo.completed) {
-      input.checked = true;
+      checkboxInput.checked = true;
     }
 
     label.textContent = todo.task;
     label.htmlFor = todo.id;
 
-    li.append(input, label);
+    li.append(label, checkboxInput);
     ul.appendChild(li);
 
+    addListenerToAddTodoItemButton();
     addListenerToDeleteButton(deleteBtn);
   }
+  addListenerToAddButton();
 }
-
-// Lisää delete nappi ja sen toiminnallisuus
-/* function addDeleteButton() {
+/*
   const deleteButton = document.createElement('button');
   deleteButton.className = 'add-btn';
   deleteButton.textContent = 'Delete item';
@@ -77,7 +77,7 @@ function showTodoList() {
 
   deleteButton.addEventListener('click', event => {
     let checked = document.querySelectorAll(
-      'li:has(>input[type=checkbox]:checked)'
+      'li:has(>checkboxInput[type=checkbox]:checked)'
     );
 
     checked.forEach(node => {
@@ -94,8 +94,7 @@ function showTodoList() {
   });
 } */
 
-showTodoList();
-
+// Lisätään kuuntelija delete napille
 function addListenerToDeleteButton(button) {
   button.addEventListener('click', event => {
     const id = event.target.parentElement.dataset.id;
@@ -110,3 +109,49 @@ function addListenerToDeleteButton(button) {
     console.log('updated array: ', todoList);
   });
 }
+
+// Lisätään toiminnallisuus addTodoItem buttonille
+function addListenerToAddTodoItemButton() {
+  const addButton = document.querySelector('button.add-btn');
+  const dialog = document.querySelector('dialog');
+  addButton.addEventListener('click', event => {
+    dialog.showModal();
+  });
+}
+
+function addListenerToAddButton() {
+  const addBtn = document.querySelector('form > button');
+  let newTodoItemValue;
+  addBtn.addEventListener('click', event => {
+    newTodoItemValue = document.querySelector('form > input');
+
+    const label = document.createElement('label');
+    const input = document.createElement('input');
+    const id = Date.now();
+    const li = document.createElement('li');
+    const deletetBtn = document.createElement('button');
+
+    if (newTodoItemValue.value) {
+      todoList.push({
+        id: id,
+        task: newTodoItemValue.value,
+        completed: false,
+      });
+      console.log('updated list: ', todoList);
+      deletetBtn.textContent = 'delete';
+      label.textContent = newTodoItemValue.value;
+      label.htmlFor = id;
+
+      input.type = 'checkbox';
+      input.id = id;
+
+      li.append(input, label, deletetBtn);
+      ul.append(li);
+      addListenerToDeleteButton(deletetBtn);
+      newTodoItemValue.value = '';
+    }
+    document.querySelector('dialog').close();
+  });
+}
+
+showTodoList();
