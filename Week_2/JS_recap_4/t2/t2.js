@@ -770,4 +770,76 @@ const restaurants = [
   },
 ];
 
-// your code here
+// Näyttää ravintolat käyttäjälle
+// Lisää tarvittavat kuuntelijat ja niiden toiminnallisuudet
+function showRestaurants() {
+  const dialog = document.querySelector('dialog');
+  const table = document.querySelector('table');
+
+  restaurants.sort((r1, r2) => {
+    return r1.name.localeCompare(r2.name);
+  });
+
+  console.log(restaurants);
+
+  for (const restaurant of restaurants) {
+    const tr = document.createElement('tr');
+    const tdForName = document.createElement('td');
+    const tdForAddress = document.createElement('td');
+    console.log(restaurant);
+
+    tdForName.textContent = restaurant.name;
+    tdForAddress.textContent = restaurant.address;
+
+    tr.id = restaurant._id;
+    tr.append(tdForName, tdForAddress);
+    tr.addEventListener('click', event => {
+      const allRows = document.querySelectorAll('tr');
+      allRows.forEach(row => {
+        row.classList = '';
+      });
+
+      tr.className = 'highlight';
+
+      const pForName = document.createElement('p');
+      const pForAddress = document.createElement('p');
+      const pForPostalCode = document.createElement('p');
+      const pForCity = document.createElement('p');
+      const pForPhoneNumber = document.createElement('p');
+      const pForCompany = document.createElement('p');
+      const clickedRestaurant = getRestaurantById(tr.id);
+
+      pForName.textContent = clickedRestaurant.name;
+      pForAddress.textContent = clickedRestaurant.address;
+      pForPostalCode.textContent = clickedRestaurant.postalCode;
+      pForCity.textContent = clickedRestaurant.city;
+      pForPhoneNumber.textContent = clickedRestaurant.phone;
+      pForCompany.textContent = clickedRestaurant.company;
+
+      dialog.append(
+        pForName,
+        pForAddress,
+        pForPostalCode,
+        pForCity,
+        pForCompany
+      );
+      dialog.showModal();
+
+      dialog.addEventListener('click', event => {
+        dialog.innerHTML = '';
+        dialog.close();
+      });
+    });
+
+    table.appendChild(tr);
+  }
+}
+
+// Palauttaa parametrina annettua ID:ta vastaavan restaurant olion
+function getRestaurantById(id) {
+  const index = restaurants.findIndex(restaurant => {
+    return restaurant._id === id;
+  });
+  return restaurants[index];
+}
+showRestaurants();

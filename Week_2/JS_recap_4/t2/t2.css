@@ -24,3 +24,15 @@ td {
   border-bottom: 1px solid #ccc;
   padding: 0.5em 1em;
 }
+
+.highlight {
+  font-weight: bold;
+  background-color: burlywood;
+}
+
+dialog > p {
+  font-weight: bold;
+  padding: 0.5em 1em;
+  text-align: left;
+  background-color: antiquewhite;
+}
