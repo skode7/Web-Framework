@@ -1,22 +1,27 @@
 .headerbar {
-  background-color: rgba(12, 11, 9, 0.75);
-}
-
-header h1 {
+  display: flex;
+  align-items: center;
   color: whitesmoke;
+  justify-content: space-between;
+  padding: 50px;
 }
 
 .navbar {
   display: flex;
-  justify-content: space-evenly;
-}
-.navbar .bar {
-  color: whitesmoke;
+  justify-content: right;
 }
 
-h1 {
-  display: flex;
-  justify-content: center;
+.bar {
+  color: whitesmoke;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.bar:hover {
+  text-decoration: underline;
+  color: whitesmoke;
 }
 
 body {
@@ -27,5 +32,5 @@ body {
   background-attachment: fixed;
   background-size: cover;
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Orbitron', sans-serif;
 }
