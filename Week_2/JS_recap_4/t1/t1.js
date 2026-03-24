@@ -36,9 +36,13 @@ function showTodoList() {
     const label = document.createElement('label');
     const input = document.createElement('input');
     const li = document.createElement('li');
+    const deleteBtn = document.createElement('button');
 
     li.className = 'listItem';
     li.dataset.id = todo.id;
+    li.appendChild(deleteBtn);
+
+    deleteBtn.textContent = 'delete';
 
     input.id = todo.id;
     input.type = 'checkbox';
@@ -58,12 +62,13 @@ function showTodoList() {
 
     li.append(input, label);
     ul.appendChild(li);
+
+    addListenerToDeleteButton(deleteBtn);
   }
-  addDeleteButton();
 }
 
 // Lisää delete nappi ja sen toiminnallisuus
-function addDeleteButton() {
+/* function addDeleteButton() {
   const deleteButton = document.createElement('button');
   deleteButton.className = 'add-btn';
   deleteButton.textContent = 'Delete item';
@@ -87,6 +92,21 @@ function addDeleteButton() {
 
     console.log('päivitetty lista', todoList);
   });
-}
+} */
 
 showTodoList();
+
+function addListenerToDeleteButton(button) {
+  button.addEventListener('click', event => {
+    const id = event.target.parentElement.dataset.id;
+    ul.removeChild(event.target.parentElement);
+
+    const indexToRemove = todoList.findIndex(item => {
+      return item.id === Number(id);
+    });
+
+    todoList.splice(indexToRemove, 1);
+
+    console.log('updated array: ', todoList);
+  });
+}
