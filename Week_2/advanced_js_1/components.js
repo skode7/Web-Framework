@@ -14,13 +14,7 @@ function restaurantModal(restaurant, menu) {
   const pForDetails = document.createElement('p');
 
   pForDetails.innerText = `${
-    restaurant.name +
-    '\n' +
-    restaurant.address +
-    '\n' +
-    restaurant.postalCode +
-    '\n' +
-    restaurant.city
+    name + '\n' + address + '\n' + postalCode + '\n' + city
   }`;
 
   div.append(pForDetails, divForMenu);
