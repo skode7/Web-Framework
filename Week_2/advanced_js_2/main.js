@@ -6,8 +6,8 @@ import {restaurantRow, restaurantModal} from './components.js';
 import {
   fetchData,
   getRestaurantById,
-  getDailyMenuByRestaurantID,
   updateRestaurantTableView,
+  addDialogFunctionality,
 } from './utils.js';
 
 async function main() {
@@ -45,26 +45,15 @@ async function main() {
       const selectedRadioChoice = document.querySelector(
         '.radio-input:checked'
       );
-      updateRestaurantTableView(restaurants, selectedRadioChoice.value, tbody);
+      updateRestaurantTableView(
+        restaurants,
+        selectedRadioChoice.value,
+        tbody,
+        dialog
+      );
     });
   });
 }
 // Show details and menu when user click's restaurant row
-async function addDialogFunctionality(clickedRestaurant, dialog) {
-  const menu = await getDailyMenuByRestaurantID(clickedRestaurant._id);
-  const div = restaurantModal(clickedRestaurant, menu);
 
-  dialog.append(div);
-  dialog.showModal();
-  dialog.addEventListener('click', (event) => {
-    dialog.innerHTML = '';
-    dialog.close();
-  });
-
-  dialog.showModal();
-  dialog.addEventListener('click', (event) => {
-    dialog.innerHTML = '';
-    dialog.close();
-  });
-}
 main();

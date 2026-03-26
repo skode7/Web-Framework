@@ -1,5 +1,5 @@
 import {baseUrl} from './variables.js';
-import {restaurantRow} from './components.js';
+import {restaurantRow, restaurantModal} from './components.js';
 
 // Haetaan ravintolat API:sta
 async function fetchData() {
@@ -41,7 +41,7 @@ async function getDailyMenuByRestaurantID(restaurantId) {
   }
 }
 
-// Function to
+// Function to get restaurants filtered by choice (sodexo, compass group)
 function getFilteredRestaurants(restaurants, choice) {
   let filteredRestaurants = [];
   console.log(choice.toLowerCase());
@@ -65,8 +65,10 @@ function getFilteredRestaurants(restaurants, choice) {
   return filteredRestaurants;
 }
 
-function updateRestaurantTableView(restaurants, choice, tbody) {
+// update table rows by filtered restaurants
+function updateRestaurantTableView(restaurants, choice, tbody, dialog) {
   const filteredRestaurants = getFilteredRestaurants(restaurants, choice);
+
   tbody.innerHTML = '';
 
   filteredRestaurants.forEach((restaurant) => {
@@ -79,10 +81,31 @@ function updateRestaurantTableView(restaurants, choice, tbody) {
       });
       row.className = 'highlight';
 
-      addDialogFunctionality(getRestaurantById(restaurants, row.id), dialog);
+      addDialogFunctionality(
+        getRestaurantById(filteredRestaurants, row.id),
+        dialog
+      );
     });
-
     tbody.appendChild(row);
+  });
+}
+
+// Add event handlers to show today menus
+async function addDialogFunctionality(clickedRestaurant, dialog) {
+  const menu = await getDailyMenuByRestaurantID(clickedRestaurant._id);
+  const div = restaurantModal(clickedRestaurant, menu);
+
+  dialog.append(div);
+  dialog.showModal();
+  dialog.addEventListener('click', (event) => {
+    dialog.innerHTML = '';
+    dialog.close();
+  });
+
+  dialog.showModal();
+  dialog.addEventListener('click', (event) => {
+    dialog.innerHTML = '';
+    dialog.close();
   });
 }
 
@@ -92,4 +115,5 @@ export {
   getDailyMenuByRestaurantID,
   getFilteredRestaurants,
   updateRestaurantTableView,
+  addDialogFunctionality,
 };
