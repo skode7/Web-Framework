@@ -59,6 +59,7 @@ section:target {
 }
 .login-section button {
   font-size: large;
+  opacity: 70%;
 }
 
 .login-section #username-div,
