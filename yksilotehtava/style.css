@@ -54,6 +54,8 @@ section:target {
   box-sizing: border-box;
   padding: 5px;
   font-size: large;
+  font-weight: bolder;
+  opacity: 80%;
 }
 .login-section button {
   font-size: large;
