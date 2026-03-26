@@ -30,9 +30,13 @@ td {
   background-color: burlywood;
 }
 
-dialog > p {
+dialog > div {
   font-weight: bold;
   padding: 0.5em 1em;
   text-align: left;
   background-color: antiquewhite;
+}
+
+.menu-item {
+  border-bottom: 2px dotted red;
 }

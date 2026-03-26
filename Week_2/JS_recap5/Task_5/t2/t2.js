@@ -33,38 +33,63 @@ async function showRestaurants() {
 
       tr.className = 'highlight';
 
-      const pForName = document.createElement('p');
-      const pForAddress = document.createElement('p');
-      const pForPostalCode = document.createElement('p');
-      const pForCity = document.createElement('p');
-      const pForPhoneNumber = document.createElement('p');
-      const pForCompany = document.createElement('p');
-      const clickedRestaurant = getRestaurantById(restaurants, tr.id);
-
-      pForName.textContent = clickedRestaurant.name;
-      pForAddress.textContent = clickedRestaurant.address;
-      pForPostalCode.textContent = clickedRestaurant.postalCode;
-      pForCity.textContent = clickedRestaurant.city;
-      pForPhoneNumber.textContent = clickedRestaurant.phone;
-      pForCompany.textContent = clickedRestaurant.company;
-
-      dialog.append(
-        pForName,
-        pForAddress,
-        pForPostalCode,
-        pForCity,
-        pForCompany
-      );
-      dialog.showModal();
-
-      dialog.addEventListener('click', (event) => {
-        dialog.innerHTML = '';
-        dialog.close();
-      });
+      addDialogFunctionality(getRestaurantById(restaurants, tr.id), dialog);
     });
-
     table.appendChild(tr);
   }
+}
+
+// Show details and menu when user click's restaurant row
+async function addDialogFunctionality(clickedRestaurant, dialog) {
+  const pForDetails = document.createElement('p');
+  const menu = await getDailyMenuByRestaurantID(clickedRestaurant._id);
+  const div = document.createElement('div');
+  const divForMenu = document.createElement('div');
+
+  if (menu) {
+    console.log(menu);
+
+    menu.courses.forEach((item) => {
+      const divForMenuItem = document.createElement('div');
+      divForMenuItem.className = 'menu-item';
+      divForMenuItem.innerHTML = `
+      <h3>${item.name}</h3>
+      <p>${item.price}</p>
+      <p>${item.diets}</p>
+      `;
+
+      divForMenu.append(divForMenuItem);
+    });
+  }
+
+  divForMenu.className = 'menu-div';
+  divForMenu.style.display = 'grid';
+  divForMenu.style.gridTemplateColumns = '2fr';
+
+  div.append(pForDetails, divForMenu);
+
+  pForDetails.innerText = `${
+    clickedRestaurant.name +
+    '\n' +
+    clickedRestaurant.address +
+    '\n' +
+    clickedRestaurant.postalCode +
+    '\n' +
+    clickedRestaurant.city
+  }`;
+
+  dialog.append(div);
+  dialog.showModal();
+  dialog.addEventListener('click', (event) => {
+    dialog.innerHTML = '';
+    dialog.close();
+  });
+
+  dialog.showModal();
+  dialog.addEventListener('click', (event) => {
+    dialog.innerHTML = '';
+    dialog.close();
+  });
 }
 
 // Palauttaa parametrina annettua ID:ta vastaavan restaurant olion
@@ -87,6 +112,23 @@ async function getRestaurantData() {
     console.log('Invalid response!', response.status);
   } catch (error) {
     console.log('error in getRestaurantData:', error.message);
+  }
+}
+
+// Palauttaa parametrina annettua id:ta vastaavan ravintolan menun
+async function getDailyMenuByRestaurantID(restaurantId) {
+  const lang = 'fi';
+  const url = `https://media2.edu.metropolia.fi/restaurant/api/v1/restaurants/daily/${restaurantId}/${lang}`;
+
+  try {
+    const response = await fetch(url);
+    if (response.ok) {
+      console.log('response ok!');
+      return await response.json();
+    }
+    console.log('invalid response', response.status);
+  } catch (error) {
+    console.log('Error in getDailyMenuByRestaurantId', error.message);
   }
 }
 
