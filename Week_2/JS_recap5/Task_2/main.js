@@ -1,4 +1,5 @@
-const apiKey = 'reqres_9e33be07994040529ce0adf40102f9ba';
+const apiKey =
+  'pub_eab81beecc818542ce388ad5fd9295604e2867507ee39cc0c17fd858737ade68';
 const url = 'https://reqres.in/api/users';
 
 async function getData() {
@@ -7,10 +8,14 @@ async function getData() {
     headers: {
       'x-api-key': apiKey,
     },
+    body: JSON.stringify({
+      email: 'Matti',
+      job: 'Java Developer',
+    }),
   });
 
   const result = await response.json();
-  console.log(result.data);
+  console.log(result);
 }
 
 getData();
