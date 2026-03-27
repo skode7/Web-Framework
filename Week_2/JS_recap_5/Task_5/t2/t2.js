@@ -5,6 +5,10 @@ async function showRestaurants() {
   const table = document.querySelector('table');
   const restaurants = await getRestaurantData();
 
+  if (!restaurants) {
+    table.textContent = 'Error happened! Try again..';
+  }
+
   restaurants.sort((r1, r2) => {
     return r1.name.localeCompare(r2.name);
   });
