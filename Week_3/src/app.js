@@ -17,6 +17,8 @@ app.get('/api/v1/cat', (req, res) => {
   );
 });
 
+app.use('/public', express.static('./Week_3/src/public'));
+
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
