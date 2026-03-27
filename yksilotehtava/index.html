@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Restaurant</title>
-    <link rel="stylesheet" href="style.css"></style>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <header class="headerbar">
@@ -23,11 +23,17 @@
       </section>
 
       <section class="find-nearest-section" id="find-nearest">
-        <p>find nearest content here </p>
+        <div id="map"></div>
       </section>
 
       <section class="restaurants-section" id="restaurants">
-        <p>restaurants content here </p>
+        <div class="restaurant-grid">
+          <article class="restaurant-card">
+            <img src="placeholder.jpg" alt="Ravintola">
+            <h3>Pizzeria Testi</h3>
+            <p>Kuvaus ja osoite tähän.</p>
+          </article>
+        </div>
       </section>
 
       <section class="login-section" id="login">
@@ -41,7 +47,7 @@
             <input type="password" name="password"></input>
           </label>
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" id="loginButton">Login</button>
       </section>
 
     </main>
