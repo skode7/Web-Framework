@@ -25,7 +25,15 @@ const addCat = (req, res) => {
 };
 
 const deleteCat = (req, res) => {
-  res.sendStatus(200);
+  res.json({
+    message: 'Cat item deleted.',
+  });
 };
 
-export {getCats, getCatByID, addCat, deleteCat};
+const putCat = (req, res) => {
+  res.json({
+    message: 'Cat item updated.',
+  });
+};
+
+export {getCats, getCatByID, addCat, deleteCat, putCat};
