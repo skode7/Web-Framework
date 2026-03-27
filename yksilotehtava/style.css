@@ -42,15 +42,35 @@ section {
 section:target {
   display: flex;
   color: aliceblue;
-}
-
-.loginsection {
   display: flex;
   flex-direction: column;
-}
-
-.main-content {
-  display: flex;
-  flex-direction: column;
+  gap: 20px;
   align-items: center;
+}
+
+.login-section input {
+  width: 100%;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 5px;
+  font-size: large;
+  font-weight: bolder;
+  opacity: 80%;
+}
+.login-section button {
+  font-size: large;
+  opacity: 70%;
+}
+
+.login-section #username-div,
+.login-section #password-div {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  align-items: center;
+}
+
+* {
+  outline-style: solid;
+  outline-color: red;
 }
