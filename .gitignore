@@ -6,6 +6,7 @@ node_modules
 
 
 # ignore content of uploads folder
-uploads/*
+Week_3/04_middleware/public/uploads/*
 # except one (empty) file to have the folder in version control
-!uploads/.gitkeep
+
+!Week_3/04_middleware/public/uploads//.gitkeep
