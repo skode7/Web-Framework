@@ -2,6 +2,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
+  outline-style: solid;
+  outline-color: aqua;
 }
 
 .headerbar {
@@ -101,7 +104,7 @@ section:target {
 .restaurant-grid {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
-  width: 300px;
+  width: 50%;
 }
 
 @media (max-width: 600px) {
