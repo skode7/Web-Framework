@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant</title>
+    <link rel="stylesheet" href="style.css">
+    <script type ="module" src="main.js"></script>
+  </head>
+  <body>
+    <header class="headerbar">
+      <h1>Restaurant</h1>
+    <nav class="navbar">
+      <a class="bar" href="#home">Home</a>
+      <a class="bar" href="#find-nearest">Find nearest</a>
+      <a class="bar" href="#restaurants">Restaurants</a>
+      <a class="bar" href="#login">Login</a>
+    </nav>
+    </header>
+    <main>
+
+      <section class="home-section" id="home">
+        <div class="hero-content">
+          <h2>Nälkä? Me toimitamme.</h2>
+          <a href="#restaurants" class="cta-button">Selaa ravintoloita</a>
+      </div>
+
+      </section>
+
+      <section class="find-nearest-section" id="find-nearest">
+        <div id="map"></div>
+        <p>Map here</p>
+      </section>
+
+      <section class="restaurants-section" id="restaurants">
+        <div class="restaurant-grid">
+
+        </div>
+      </section>
+
+      <section class="login-section" id="login">
+        <div id="username-div">
+          <label>Username
+            <input type="text" name="username"></input>
+          </label>
+        </div>
+        <div id="password-div">
+          <label>Password
+            <input type="password" name="password"></input>
+          </label>
+        </div>
+        <button type="submit" id="loginButton">Login</button>
+      </section>
+
+    </main>
+  </body>
+</html>
