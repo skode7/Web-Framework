@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "nodemon ./Week_3/03_routing/src/index.js",
-    "start": "node ./Week_3/03_routing/src/index.js"
+    "dev": "nodemon ./Week_3/04_middleware/Task_1/src/index.js",
+    "start": "node ./Week_3/04_middleware/Task_1/src/index.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "nodemon": "^3.1.14"
   },
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "multer": "^2.1.1"
   }
 }
