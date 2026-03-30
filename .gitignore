@@ -9,7 +9,7 @@ node_modules
 Week_3/04_middleware/public/uploads/*
 # except one (empty) file to have the folder in version control
 
-!Week_3/04_middleware/public/uploads/*
+!Week_3/04_middleware/public/uploads/.gitkeep
 
 Week_3/04_middleware/Task_2/src/public/uploads/*
 # except one (empty) file to have the folder in version control
