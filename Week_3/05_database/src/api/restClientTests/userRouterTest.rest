@@ -4,11 +4,11 @@ Content-Type: multipart/form-data; boundary=MyBoundary
 --MyBoundary
 Content-Disposition: form-data; name="username"
 
-Matti
+Mattii
 --MyBoundary
 Content-Disposition: form-data; name="user_id"
 
-1
+222
 --MyBoundary
 Content-Disposition: form-data; name="name"
 
@@ -29,7 +29,7 @@ passu666
 Content-Disposition: form-data; name="image"; filename="catpic.jpg"
 Content-Type: image/jpeg
 
-< ../../../../public/catpic.jpg
+< ../../public/catpic.jpg
 --MyBoundary--
 
 ###
@@ -68,5 +68,5 @@ Content-Type: application/json
 
 ###
 
-DELETE http://127.0.0.1:3000/api/v1/user/888 HTTP/1.1
+DELETE http://127.0.0.1:3000/api/v1/user/666 HTTP/1.1
 
