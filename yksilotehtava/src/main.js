@@ -1,5 +1,5 @@
 import {getRestaurants} from './utils/apiClient.js';
-import {getRestaurantCard} from './components/components.js';
+import {createRestaurantCard} from './components/components.js';
 
 const showRestaurants = async () => {
   const data = await getRestaurants();
@@ -7,11 +7,14 @@ const showRestaurants = async () => {
 
 const testing = async () => {
   const data = await getRestaurants();
-
   const restaurantSection = document.querySelector('.restaurant-grid');
 
+  if (data.length < 1) {
+    restaurantSection.innerHTML = '<h2>Please try again</h2>';
+  }
+
   data.forEach((restaurant) => {
-    restaurantSection.innerHTML += getRestaurantCard(restaurant);
+    restaurantSection.append(createRestaurantCard(restaurant));
   });
 };
 
