@@ -103,8 +103,8 @@ section:target {
 
 .restaurant-grid {
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-  width: 50%;
+  gap: 35px;
+  width: 70%;
 }
 
 @media (max-width: 600px) {
@@ -139,4 +139,9 @@ section:target {
 
 .cta-button:hover {
   transform: scale(1.05);
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
 }
