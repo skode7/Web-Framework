@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "nodemon ./Week_3/05_database/src/index.js",
-    "start": "node ./Week_3/05_database/src/index.js"
+    "dev": "nodemon ./Week_3/06_auth/src/index.js",
+    "start": "node ./Week_3/06_auth/src/index.js"
   },
   "repository": {
     "type": "git",
