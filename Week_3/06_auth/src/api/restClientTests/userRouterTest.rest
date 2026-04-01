@@ -4,15 +4,15 @@ Content-Type: multipart/form-data; boundary=MyBoundary
 --MyBoundary
 Content-Disposition: form-data; name="username"
 
-Mattii
+Matti22
 --MyBoundary
 Content-Disposition: form-data; name="user_id"
 
-222
+10111
 --MyBoundary
 Content-Disposition: form-data; name="name"
 
-matti
+testi
 --MyBoundary
 Content-Disposition: form-data; name="email"
 
@@ -24,7 +24,7 @@ admin
 --MyBoundary
 Content-Disposition: form-data; name="password"
 
-passu666
+testi
 --MyBoundary
 Content-Disposition: form-data; name="image"; filename="catpic.jpg"
 Content-Type: image/jpeg

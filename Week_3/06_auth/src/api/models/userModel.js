@@ -79,4 +79,23 @@ const updateUser = async (user, id) => {
   return {message: 'success'};
 };
 
-export {addNewUser, getAllUsers, getUserById, deleteU, updateUser};
+// Get user from db by username
+const findUserByUsername = async (user) => {
+  const [rows] = await promisePool.query(
+    'SELECT * FROM wsk_users WHERE username = ?',
+    [user]
+  );
+  if (rows.length === 0) {
+    return false;
+  }
+  return rows[0];
+};
+
+export {
+  findUserByUsername,
+  addNewUser,
+  getAllUsers,
+  getUserById,
+  deleteU,
+  updateUser,
+};
