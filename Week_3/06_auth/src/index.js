@@ -10,7 +10,7 @@ app.use('/api/v1/user', userRouter);
 
 app.use('/api/v1/cat', catRouter);
 
-app.use('/api/v1auth/login', authRouter);
+app.use('/api/v1/auth', authRouter);
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
