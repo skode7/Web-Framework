@@ -6,12 +6,14 @@ import {
   updateUser,
 } from '../models/userModel.js';
 
-const getUsers = (req, res) => {
-  res.json(getAllUsers());
+import bcrypt from 'bcrypt';
+
+const getUsers = async (req, res) => {
+  res.json(await getAllUsers());
 };
 
-const getUser = (req, res) => {
-  const user = getUserById(req.params.id);
+const getUser = async (req, res) => {
+  const user = await getUserById(req.params.id);
   if (user) {
     res.json(user);
   } else {
@@ -19,9 +21,10 @@ const getUser = (req, res) => {
   }
 };
 
-const addUser = (req, res) => {
-  console.log(req.body);
-  const result = addNewUser(req.body);
+// Hash user's password and add user to database
+const addUser = async (req, res) => {
+  req.body.password = await bcrypt.hash(req.body.password, 10);
+  const result = await addNewUser(req.body);
   if (result.user_id) {
     res.status(201);
     res.json({message: 'new user added', result});
@@ -30,12 +33,12 @@ const addUser = (req, res) => {
   }
 };
 
-const putUser = (req, res) => {
-  res.json(updateUser(req.body, req.params.id));
+const putUser = async (req, res) => {
+  res.json(await updateUser(req.body, req.params.id));
 };
 
-const deleteUser = (req, res) => {
-  const result = deleteU(req.params.id);
+const deleteUser = async (req, res) => {
+  const result = await deleteU(req.params.id);
   res.json(result);
   console.log(result);
 };
