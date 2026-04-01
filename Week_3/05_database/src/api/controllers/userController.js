@@ -6,12 +6,12 @@ import {
   updateUser,
 } from '../models/userModel.js';
 
-const getUsers = (req, res) => {
-  res.json(getAllUsers());
+const getUsers = async (req, res) => {
+  res.json(await getAllUsers());
 };
 
-const getUser = (req, res) => {
-  const user = getUserById(req.params.id);
+const getUser = async (req, res) => {
+  const user = await getUserById(req.params.id);
   if (user) {
     res.json(user);
   } else {
@@ -19,9 +19,9 @@ const getUser = (req, res) => {
   }
 };
 
-const addUser = (req, res) => {
+const addUser = async (req, res) => {
   console.log(req.body);
-  const result = addNewUser(req.body);
+  const result = await addNewUser(req.body);
   if (result.user_id) {
     res.status(201);
     res.json({message: 'new user added', result});
@@ -30,12 +30,12 @@ const addUser = (req, res) => {
   }
 };
 
-const putUser = (req, res) => {
-  res.json(updateUser(req.body, req.params.id));
+const putUser = async (req, res) => {
+  res.json(await updateUser(req.body, req.params.id));
 };
 
-const deleteUser = (req, res) => {
-  const result = deleteU(req.params.id);
+const deleteUser = async (req, res) => {
+  const result = await deleteU(req.params.id);
   res.json(result);
   console.log(result);
 };
