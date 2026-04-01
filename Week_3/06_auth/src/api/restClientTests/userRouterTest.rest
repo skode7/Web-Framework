@@ -1,0 +1,72 @@
+POST http://127.0.0.1:3000/api/v1/user HTTP/1.1
+Content-Type: multipart/form-data; boundary=MyBoundary
+
+--MyBoundary
+Content-Disposition: form-data; name="username"
+
+Mattii
+--MyBoundary
+Content-Disposition: form-data; name="user_id"
+
+222
+--MyBoundary
+Content-Disposition: form-data; name="name"
+
+matti
+--MyBoundary
+Content-Disposition: form-data; name="email"
+
+matti@masa.fi
+--MyBoundary
+Content-Disposition: form-data; name="role"
+
+admin
+--MyBoundary
+Content-Disposition: form-data; name="password"
+
+passu666
+--MyBoundary
+Content-Disposition: form-data; name="image"; filename="catpic.jpg"
+Content-Type: image/jpeg
+
+< ../../public/catpic.jpg
+--MyBoundary--
+
+###
+GET http://127.0.0.1:3000/api/v1/user HTTP/1.1
+
+###
+GET http://127.0.0.1:3000/api/v1/user/666 HTTP/1.1
+
+###
+POST http://127.0.0.1:3000/api/v1/user HTTP/1.1
+Content-Type: application/json
+
+{
+    "user_id": 666,
+    "name": "teemu",
+    "username": "teme",
+    "email": "teemu@testi.fi",
+    "password": "passu",
+    "role": "master_admin"
+}
+
+###
+
+PUT http://127.0.0.1:3000/api/v1/user/777 HTTP/1.1
+Content-Type: application/json
+
+{
+    "user_id": 888,
+    "name": "jeemugee",
+    "username": "teme",
+    "email": "teemu@testi.fi",
+    "password": "passu",
+    "role": "master_admin"
+}
+
+
+###
+
+DELETE http://127.0.0.1:3000/api/v1/user/666 HTTP/1.1
+

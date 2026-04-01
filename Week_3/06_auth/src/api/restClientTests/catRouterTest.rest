@@ -4,7 +4,7 @@ Content-Type: multipart/form-data; boundary=MyBoundary
 --MyBoundary
 Content-Disposition: form-data; name="cat_name"
 
-Misu
+Misuu
 --MyBoundary
 Content-Disposition: form-data; name="weight"
 
@@ -12,7 +12,7 @@ Content-Disposition: form-data; name="weight"
 --MyBoundary
 Content-Disposition: form-data; name="owner"
 
-37
+222
 --MyBoundary
 Content-Disposition: form-data; name="birthdate"
 
@@ -21,5 +21,15 @@ Content-Disposition: form-data; name="birthdate"
 Content-Disposition: form-data; name="image"; filename="catpic.jpg"
 Content-Type: image/jpeg
 
-< ../../../../public/catpic.jpg
+< ../../public/catpic.jpg
 --MyBoundary--
+
+
+###
+GET http://127.0.0.1:3000/api/v1/cat HTTP/1.1
+
+###
+GET http://127.0.0.1:3000/api/v1/cat/48 HTTP/1.1
+
+###
+DELETE http://127.0.0.1:3000/api/v1/cat/41 HTTP/1.1

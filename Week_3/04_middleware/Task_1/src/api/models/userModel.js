@@ -2,7 +2,7 @@ const userItems = [
   {
     user_id: 3609,
     name: 'John Doe',
-    username: 'johndoe',
+    username: 'john_doe',
     email: 'john@metropolia.fi',
     role: 'user',
     password: 'password',
