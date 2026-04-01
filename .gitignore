@@ -20,3 +20,8 @@ Week_3/05_database/src/public/uploads/*
 # except one (empty) file to have the folder in version control
 
 !Week_3/05_database/src/public/uploads/.gitkeep
+
+Week_3/06_auth/src/public/uploads/*
+# except one (empty) file to have the folder in version control
+
+!Week_3/06_auth/src/public/uploads/.gitkeep
