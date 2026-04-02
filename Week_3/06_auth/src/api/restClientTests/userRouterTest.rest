@@ -4,11 +4,11 @@ Content-Type: multipart/form-data; boundary=MyBoundary
 --MyBoundary
 Content-Disposition: form-data; name="username"
 
-admin1
+user1
 --MyBoundary
 Content-Disposition: form-data; name="user_id"
 
-141
+1411
 --MyBoundary
 Content-Disposition: form-data; name="name"
 
@@ -20,11 +20,11 @@ matti@masa.fi
 --MyBoundary
 Content-Disposition: form-data; name="role"
 
-admin
+user
 --MyBoundary
 Content-Disposition: form-data; name="password"
 
-admin1
+user1
 --MyBoundary
 Content-Disposition: form-data; name="image"; filename="catpic.jpg"
 Content-Type: image/jpeg
@@ -51,17 +51,17 @@ Content-Type: application/json
     "role": "master_admin"
 }
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MTEsIm5hbWUiOiJ0ZW1lMSIsInVzZXJuYW1lIjoidXNlcjEiLCJlbWFpbCI6Im1hdHRpQG1hc2EuZmkiLCJyb2xlIjoidXNlciIsImlhdCI6MTc3NTE0NzkzMSwiZXhwIjoxNzc1MjM0MzMxfQ.MDAQcYQ2gAcDeMSnBMG2Idp5ey55QFokoXVq9xP9Tcw
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNDExLCJuYW1lIjoidGVtZTEiLCJ1c2VybmFtZSI6InVzZXIxIiwiZW1haWwiOiJtYXR0aUBtYXNhLmZpIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzUxNDkwMTUsImV4cCI6MTc3NTIzNTQxNX0.w7_FjJwtxw3QQYMeGzi8wb580Gwq8MJhUrzEZQrPmbw
 ###
 
-PUT http://127.0.0.1:3000/api/v1/user/4 HTTP/1.1
+PUT http://127.0.0.1:3000/api/v1/user/11 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "user_id": 111,
+    "user_id": 11,
     "name": "jeemugee",
-    "username": "tes",
+    "username": "test",
     "email": "teemu@testi.fi",
     "password": "passu",
     "role": "admin"
@@ -70,7 +70,7 @@ Authorization: Bearer {{token}}
 
 ###
 
-DELETE http://127.0.0.1:3000/api/v1/user/2 HTTP/1.1
+DELETE http://127.0.0.1:3000/api/v1/user/11 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
