@@ -11,6 +11,8 @@ import {
 
 import express from 'express';
 import createThumbnail from '../../middlewares/upload.js';
+import authenticateToken from '../../middlewares/authentication.js';
+//import isOwner from '../../middlewares/isOwner.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const userRouter = express.Router();
@@ -22,6 +24,10 @@ userRouter
   .route('/')
   .get(getUsers)
   .post(upload.single('image'), createThumbnail, addUser);
-userRouter.route('/:id').get(getUser).put(putUser).delete(deleteUser);
+userRouter
+  .route('/:id')
+  .get(getUser)
+  .put(authenticateToken, putUser)
+  .delete(deleteUser);
 
 export default userRouter;
