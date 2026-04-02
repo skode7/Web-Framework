@@ -4,11 +4,11 @@ Content-Type: multipart/form-data; boundary=MyBoundary
 --MyBoundary
 Content-Disposition: form-data; name="username"
 
-user
+admin1
 --MyBoundary
 Content-Disposition: form-data; name="user_id"
 
-41
+141
 --MyBoundary
 Content-Disposition: form-data; name="name"
 
@@ -20,11 +20,11 @@ matti@masa.fi
 --MyBoundary
 Content-Disposition: form-data; name="role"
 
-user
+admin
 --MyBoundary
 Content-Disposition: form-data; name="password"
 
-user
+admin1
 --MyBoundary
 Content-Disposition: form-data; name="image"; filename="catpic.jpg"
 Content-Type: image/jpeg
@@ -51,7 +51,7 @@ Content-Type: application/json
     "role": "master_admin"
 }
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MSwibmFtZSI6InRlbWUxIiwidXNlcm5hbWUiOiJ1c2VyIiwiZW1haWwiOiJtYXR0aUBtYXNhLmZpIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzUxNDU1NjAsImV4cCI6MTc3NTIzMTk2MH0.cScmLcRrcPW6GFic-rSSgKPNVM-QrpSBAHrpob4PRpU
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MTEsIm5hbWUiOiJ0ZW1lMSIsInVzZXJuYW1lIjoidXNlcjEiLCJlbWFpbCI6Im1hdHRpQG1hc2EuZmkiLCJyb2xlIjoidXNlciIsImlhdCI6MTc3NTE0NzkzMSwiZXhwIjoxNzc1MjM0MzMxfQ.MDAQcYQ2gAcDeMSnBMG2Idp5ey55QFokoXVq9xP9Tcw
 ###
 
 PUT http://127.0.0.1:3000/api/v1/user/4 HTTP/1.1
