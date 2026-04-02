@@ -11,7 +11,7 @@ import {
 } from '../controllers/catController.js';
 import createThumbnail from '../../middlewares/upload.js';
 import authenticateToken from '../../middlewares/authentication.js';
-import isOwner from '../../middlewares/isOwner.js';
+import isOwnerOrAdmin from '../../middlewares/isOwnerOrAdmin.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const catRouter = express.Router();
@@ -25,7 +25,7 @@ catRouter.route('/').post(upload.single('image'), createThumbnail, addCat);
 catRouter
   .route('/:id')
   .get(getCatByID)
-  .put(authenticateToken, isOwner, putCat)
-  .delete(authenticateToken, isOwner, deleteCat);
+  .put(authenticateToken, isOwnerOrAdmin, putCat)
+  .delete(authenticateToken, isOwnerOrAdmin, deleteCat);
 
 export default catRouter;
