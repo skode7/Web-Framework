@@ -32,7 +32,9 @@ GET http://127.0.0.1:3000/api/v1/cat HTTP/1.1
 GET http://127.0.0.1:3000/api/v1/cat/48 HTTP/1.1
 
 ###
-DELETE http://127.0.0.1:3000/api/v1/cat/41 HTTP/1.1
+DELETE http://127.0.0.1:3000/api/v1/cat/657 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
 
 ###
 

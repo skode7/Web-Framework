@@ -51,13 +51,15 @@ Content-Type: application/json
     "role": "master_admin"
 }
 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxOTEsIm5hbWUiOiJ0ZW1lMiIsInVzZXJuYW1lIjoidGVtZTEiLCJlbWFpbCI6Im1hdHRpQG1hc2EuZmkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzUxMjY0MzksImV4cCI6MTc3NTIxMjgzOX0.s_uwv-yTVp7IzWAHhVLB6exTjIXhY-6zNO1CNn3jWzk
 ###
 
-PUT http://127.0.0.1:3000/api/v1/user/777 HTTP/1.1
+PUT http://127.0.0.1:3000/api/v1/user/191 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-    "user_id": 888,
+    "user_id": 191,
     "name": "jeemugee",
     "username": "teme",
     "email": "teemu@testi.fi",
@@ -68,5 +70,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://127.0.0.1:3000/api/v1/user/666 HTTP/1.1
+DELETE http://127.0.0.1:3000/api/v1/user/1011112 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
 
