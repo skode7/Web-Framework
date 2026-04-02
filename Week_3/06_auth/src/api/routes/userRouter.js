@@ -28,6 +28,6 @@ userRouter
   .route('/:id')
   .get(getUser)
   .put(authenticateToken, putUser)
-  .delete(deleteUser);
+  .delete(authenticateToken, deleteUser);
 
 export default userRouter;
