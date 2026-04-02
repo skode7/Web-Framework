@@ -2,13 +2,13 @@ POST http://127.0.0.1:3000/api/v1/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "matti22",
-    "password": "testi"
+    "username": "teme",
+    "password": "teme"
 }
 
 ###
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMDExMSwibmFtZSI6InRlc3RpIiwidXNlcm5hbWUiOiJNYXR0aTIyIiwiZW1haWwiOiJtYXR0aUBtYXNhLmZpIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzc1MDQ0NTczLCJleHAiOjE3NzUxMzA5NzN9.sGCVebGtVlxKrsGiuhUvoEurd7CnXBhJM0Q7qTeM1yI
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMDExMTEyMSwibmFtZSI6InRlc3RpIiwidXNlcm5hbWUiOiJ0ZW1lIiwiZW1haWwiOiJtYXR0aUBtYXNhLmZpIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzc1MTIzNTgzLCJleHAiOjE3NzUyMDk5ODN9.eADvgBjAZZ0DOg5x-A8OJwAcRBmWaalo2liCf22AgRs
 ### Get my user info
 GET http://localhost:3000/api/v1/auth/me
 Authorization: Bearer {{token}}
