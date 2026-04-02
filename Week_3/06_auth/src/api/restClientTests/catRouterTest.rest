@@ -12,7 +12,7 @@ Content-Disposition: form-data; name="weight"
 --MyBoundary
 Content-Disposition: form-data; name="owner"
 
-222
+191
 --MyBoundary
 Content-Disposition: form-data; name="birthdate"
 
@@ -33,3 +33,20 @@ GET http://127.0.0.1:3000/api/v1/cat/48 HTTP/1.1
 
 ###
 DELETE http://127.0.0.1:3000/api/v1/cat/41 HTTP/1.1
+
+###
+
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxOTEsIm5hbWUiOiJ0ZW1lMiIsInVzZXJuYW1lIjoidGVtZTEiLCJlbWFpbCI6Im1hdHRpQG1hc2EuZmkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzUxMjY0MzksImV4cCI6MTc3NTIxMjgzOX0.s_uwv-yTVp7IzWAHhVLB6exTjIXhY-6zNO1CNn3jWzk
+PUT http://127.0.0.1:3000/api/v1/cat/657 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "cat_id": 657,
+    "cat_name": "Teemu",
+    "weighT": 6,
+    "owner": 191,
+    "filename": "vaihtui!",
+    "birthdate": "2010-03-05"
+}
