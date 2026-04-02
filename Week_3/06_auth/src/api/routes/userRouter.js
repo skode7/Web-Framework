@@ -12,7 +12,6 @@ import {
 import express from 'express';
 import createThumbnail from '../../middlewares/upload.js';
 import authenticateToken from '../../middlewares/authentication.js';
-//import isOwner from '../../middlewares/isOwner.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const userRouter = express.Router();
