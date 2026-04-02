@@ -26,6 +26,6 @@ catRouter
   .route('/:id')
   .get(getCatByID)
   .put(authenticateToken, isOwner, putCat)
-  .delete(deleteCat);
+  .delete(authenticateToken, isOwner, deleteCat);
 
 export default catRouter;
