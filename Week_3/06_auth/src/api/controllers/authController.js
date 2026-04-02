@@ -32,8 +32,6 @@ const postLogin = async (req, res) => {
 };
 
 const getMe = async (req, res) => {
-  console.log('getMe', res.locals.user);
-
   if (res.locals.user) {
     res.json({message: 'token ok', user: res.locals.user});
   } else {
