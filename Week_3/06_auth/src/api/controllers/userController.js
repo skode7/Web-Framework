@@ -34,13 +34,25 @@ const addUser = async (req, res) => {
 };
 
 const putUser = async (req, res) => {
+  if (isRights(res.locals.user, req.params.id)) {
+    return res.status(403).json({message: 'Ei oikeuksia muuttaa tietoja'});
+  }
   res.json(await updateUser(req.body, req.params.id));
 };
 
 const deleteUser = async (req, res) => {
+  if (isRights(res.locals.user, req.params.id)) {
+    return res.status(403).json({message: 'Ei oikeuksia poistaa muita'});
+  }
+
   const result = await deleteU(req.params.id);
   res.json(result);
   console.log(result);
+};
+
+// Helper function to check if user has needed rights to continue
+const isRights = (user, paramsId) => {
+  return user.user_id != paramsId && user.role !== 'admin';
 };
 
 export {deleteUser, putUser, addUser, getUser, getUsers};
