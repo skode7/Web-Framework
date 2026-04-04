@@ -4,21 +4,21 @@ Content-Type: multipart/form-data; boundary=MyBoundary
 --MyBoundary
 Content-Disposition: form-data; name="cat_name"
 
-Misuu
+Missuu
 --MyBoundary
 Content-Disposition: form-data; name="weight"
 
-6
+14
 --MyBoundary
 Content-Disposition: form-data; name="owner"
 
-411
+14
 --MyBoundary
 Content-Disposition: form-data; name="birthdate"
 
 2023-10-08
 --MyBoundary
-Content-Disposition: form-data; name="file"; filename="catpic.jpg"
+Content-Disposition: form-data; name="image"; filename="catpic.jpg"
 Content-Type: image/jpeg
 
 < ../../public/catpic.jpg
@@ -39,16 +39,16 @@ Authorization: Bearer {{token}}
 ###
 
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNDEsIm5hbWUiOiJ0ZW1lMSIsInVzZXJuYW1lIjoiYWRtaW4xIiwiZW1haWwiOiJtYXR0aUBtYXNhLmZpIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzc1MTQ4NTk2LCJleHAiOjE3NzUyMzQ5OTZ9.eX4dDEdK8KF8_gpM4KJ6NEHQMER29vPiokRgfscOcqo
-PUT http://127.0.0.1:3000/api/v1/cat/658 HTTP/1.1
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxOTExMTExLCJuYW1lIjoidGVtZSIsInVzZXJuYW1lIjoidGVzdGl1c2VyMTIiLCJlbWFpbCI6Im1hdHRpMTIzQGdvb2dsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzUzMDgxMDEsImV4cCI6MTc3NTM5NDUwMX0.G7J6kMS9kCH8HY2PEIcR6ots_2wZZimFEFr1xjVblas
+PUT http://127.0.0.1:3000/api/v1/cat/44 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
     "cat_id": 659,
-    "cat_name": "Kissa2",
-    "weighT": 6,
-    "owner": 4,
+    "cat_name": "Kissa",
+    "weight": 6,
+    "owner": 1911111,
     "filename": "vaihtui!",
     "birthdate": "2010-03-05"
 }
