@@ -1,3 +1,5 @@
+import {validationResult} from 'express-validator';
+
 const errorHandler = (err, req, res, next) => {
   res.status(err.status || 500);
   res.json({
@@ -15,4 +17,20 @@ const notFoundHandler = (req, res, next) => {
   next(error);
 };
 
-export {errorHandler, notFoundHandler};
+const validationErrors = async (req, res, next) => {
+  const errors = validationResult(req);
+  console.log(errors);
+  if (!errors.isEmpty()) {
+    const messages = errors
+      .array()
+      .map((error) => `${error.path}: ${error.msg}`)
+      .join(', ');
+    const error = new Error(messages);
+    error.status = 400;
+    next(error);
+    return;
+  }
+  next();
+};
+
+export {errorHandler, notFoundHandler, validationErrors};
