@@ -13,7 +13,15 @@ const getUsers = async (req, res) => {
 };
 
 const getUser = async (req, res, next) => {
+  console.log(res.locals.user);
+  if (isRights(res.locals.user, req.params.id)) {
+    const error = new Error('No rights!');
+    error.status = 403;
+    return next(error);
+  }
+
   const user = await getUserById(req.params.id);
+
   if (user) {
     res.json(user);
   } else {

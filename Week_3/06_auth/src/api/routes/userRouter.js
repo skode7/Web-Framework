@@ -9,7 +9,7 @@ import {
   deleteUser,
 } from '../controllers/userController.js';
 
-import {body} from 'express-validator';
+import {body, param} from 'express-validator';
 import {validationErrors} from '../../middlewares/errorHandlers.js';
 import express from 'express';
 import createThumbnail from '../../middlewares/upload.js';
@@ -25,7 +25,7 @@ const upload = multer({
 
 userRouter
   .route('/')
-  .get(getUsers)
+  .get(authenticateToken, getUsers)
   .post(
     upload.single('image'),
     body('email').trim().isEmail(),
@@ -37,6 +37,7 @@ userRouter
   );
 userRouter
   .route('/:id')
+  .get(param('id').isNumeric(), validationErrors, authenticateToken, getUser)
   .put(
     body('email').trim().isEmail(),
     body('username').trim().isLength({min: 3, max: 20}).isAlphanumeric(),
