@@ -1,5 +1,5 @@
 const MediaRow = (props) => {
-  const {item} = props;
+  const {item, setSelectedItem} = props;
   return (
     <tr key={item.media_id}>
       <td>
@@ -10,6 +10,15 @@ const MediaRow = (props) => {
       <td>{new Date(item.created_at).toLocaleDateString('fi-FI')}</td>
       <td>{item.filesize}</td>
       <td>{item.media_type}</td>
+      <button
+        type="button"
+        onClick={() => {
+          console.log('buttonia klikattu!');
+          setSelectedItem(item);
+        }}
+      >
+        Show media
+      </button>
     </tr>
   );
 };
