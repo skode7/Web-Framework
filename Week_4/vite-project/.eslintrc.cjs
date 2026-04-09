@@ -11,7 +11,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
   ],
   // Huom: Vain yksi plugins-lista
-  plugins: ['react-refresh'],
+  plugins: {'react-refresh': reactRefresh},
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
