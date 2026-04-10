@@ -1,3 +1,5 @@
+const reactRefresh = require('eslint-plugin-react-refresh');
+
 module.exports = {
   root: true,
   env: {
@@ -11,7 +13,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
   ],
   // Huom: Vain yksi plugins-lista
-  plugins: {'react-refresh': reactRefresh},
+  plugins: ['react-refresh'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -22,10 +24,7 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   // Huom: Vain yksi rules-objekti
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      {allowConstantExport: true},
-    ],
+    'react-refresh/only-export-components': 'off',
     'react/prop-types': 'off',
   },
 };
