@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react';
 import MediaRow from '../components/MediaRow';
 import PropTypes from 'prop-types';
 import Single from './Single.jsx';
-import fetchData from '../utils/fetchData.js';
 import useMedia from '../hooks/apiHooks.js';
 
 const Home = () => {
