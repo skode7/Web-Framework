@@ -1,21 +1,30 @@
-import {getRestaurants} from './utils/apiClient.js';
-import {createRestaurantCard} from './components/components.js';
+import getRestaurants from './utils/apiClient.js';
+import changePage from './utils/changePage.js';
 
-const showRestaurants = async () => {
-  const data = await getRestaurants();
-};
+import {
+  createRestaurantCard,
+  showRestaurantInGrid,
+} from './components/components.js';
 
-const testing = async () => {
-  const data = await getRestaurants();
-  const restaurantSection = document.querySelector('.restaurant-grid');
+const main = async () => {
+  const navLinks = document.querySelectorAll('.bar');
+  const restaurants = await getRestaurants();
 
-  if (data.length < 1) {
-    restaurantSection.innerHTML = '<h2>Please try again</h2>';
-  }
-
-  data.forEach((restaurant) => {
-    restaurantSection.append(createRestaurantCard(restaurant));
+  window.addEventListener('DOMContentLoaded', () => {
+    changePage('home');
   });
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = link.getAttribute('href').substring(1);
+      changePage(id);
+    });
+  });
+
+  restaurants.forEach((restaurant) =>
+    showRestaurantInGrid(createRestaurantCard(restaurant))
+  );
 };
 
-testing();
+main();
