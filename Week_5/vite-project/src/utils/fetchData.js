@@ -1,5 +1,5 @@
-const fetchData = async (url) => {
-  const data = await fetch(url);
+const fetchData = async (url, options) => {
+  const data = await fetch(url, options);
   return await data.json();
 };
 
