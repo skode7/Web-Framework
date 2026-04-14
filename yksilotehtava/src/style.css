@@ -1,147 +1,233 @@
+:root {
+  --glass: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --accent: #fff;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
 
-  outline-style: solid;
-  outline-color: aqua;
+body {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('../assets/restaurant.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  min-height: 100vh;
 }
 
 .headerbar {
   display: flex;
   align-items: center;
-  color: whitesmoke;
   justify-content: space-between;
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 30px;
-  margin-top: 10px;
-  margin-bottom: 50px;
-  z-index: 100;
+  padding: 15px 30px;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 0 0 20px 20px;
   position: sticky;
-}
-
-.navbar {
-  display: flex;
-}
-
-.bar {
-  color: whitesmoke;
-  padding: 10px;
-  text-align: center;
-  border-radius: 10px;
-  text-decoration: none;
-  margin: 0 5px;
-  transition: all 0.3s ease;
-}
-
-.bar:hover {
-  color: whitesmoke;
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-body {
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url('../assets/restaurant.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-
-  font-family: 'Orbitron', sans-serif;
+  top: 0;
+  z-index: 1000;
+  margin-bottom: 20px;
+  margin: 10px 20px;
+  border-radius: 15px;
 }
 
 section {
   display: none;
+  padding: 40px 20px;
+  min-height: 80vh;
+  animation: fadeIn 0.5s ease;
 }
 
-section:target {
-  display: block;
-  color: aliceblue;
+section.active {
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
 }
 
-.login-section input {
-  width: 100%;
-  border-radius: 5px;
-  box-sizing: border-box;
-  padding: 5px;
-  font-size: large;
-  font-weight: bolder;
-  opacity: 80%;
-}
-.login-section button {
-  font-size: large;
-  opacity: 70%;
+/*section:target {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
 }
 
-.login-section #username-div,
-.login-section #password-div {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  align-items: flex-start;
+body:has(section:target:not(#home)) #home {
+  display: none;
+}*/
+
+#map {
+  width: 100%;
+  max-width: 1000px;
+  height: 500px;
+  border-radius: 20px;
+  border: 2px solid var(--glass-border);
+  margin-bottom: 20px;
 }
 
 .restaurant-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  width: 90%;
+  max-width: 1200px;
 }
 
-#loginButton {
-  padding: 4px;
-  border-radius: 5px;
-}
-
-#loginButton:hover {
-  background-color: rgba(255, 255, 255, 0.8);
+.restaurant-card {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  padding: 20px;
+  border-radius: 20px;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
   cursor: pointer;
 }
 
-.restaurant-grid {
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 35px;
-  width: 70%;
+.restaurant-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
 }
 
-@media (max-width: 600px) {
-  .headerbar {
-    flex-direction: column;
-    border-radius: 20px;
-    padding: 10px;
-  }
+.restaurant-dialog {
+  margin: auto;
+  border: none;
+  border-radius: 20px;
+  background: #1a1a1a;
+  color: white;
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
 
-  .restaurant-grid {
-    grid-template-columns: 1fr;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
-.restaurant-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
+
+/*.login-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}*/
+
+.login-card {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 15px;
-  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
-.cta-button {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 25px;
-  background-color: #fff;
-  color: #000;
-  text-decoration: none;
-  border-radius: 30px;
+
+.login-card h2 {
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+}
+
+.input-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#loginButton {
+  width: 100%;
+  padding: 14px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 8px;
   font-weight: bold;
-  transition: transform 0.2s ease;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
+  margin-top: 10px;
 }
 
-.cta-button:hover {
-  transform: scale(1.05);
+#loginButton:hover {
+  background-color: #ddd;
+  transform: translateY(-2px);
 }
 
-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
+.form-footer {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.form-footer a {
+  color: white;
+  text-decoration: underline;
+}
+
+.navbar {
+  display: flex;
+  gap: 10px;
+}
+
+.bar {
+  color: rgba(255, 255, 255, 0.8);
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.bar:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.bar.active {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
 }
