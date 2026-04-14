@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Restaurant</title>
+    <title>Campus Restaurants</title>
     <link rel="stylesheet" href="style.css" />
     <script type="module" src="main.js"></script>
   </head>
   <body>
     <header class="headerbar">
-      <h1>Restaurant</h1>
+      <h1>Lounas.io</h1>
       <nav class="navbar">
         <a class="bar" href="#home">Home</a>
         <a class="bar" href="#find-nearest">Find nearest</a>
@@ -18,10 +18,33 @@
       </nav>
     </header>
     <main>
-      <section class="home-section" id="home">
-        <div class="hero-content">
-          <h2>Nälkä? Me toimitamme.</h2>
-          <a href="#restaurants" class="cta-button">Selaa ravintoloita</a>
+      <section class="home-section active" id="home">
+        <div class="hero-container">
+          <div class="hero-card">
+            <h1>Campus Eats</h1>
+            <p class="subtitle">
+              Suomen opiskelijaravintolat kätesi ulottuvilla.
+            </p>
+
+            <div class="hero-features">
+              <div class="feature">
+                <span>📍</span>
+                <p>Lähimmät</p>
+              </div>
+              <div class="feature">
+                <span>🍽️</span>
+                <p>Menut</p>
+              </div>
+              <div class="feature">
+                <span>❤️</span>
+                <p>Suosikit</p>
+              </div>
+            </div>
+
+            <a href="#restaurants" class="cta-button" id="start-browsing"
+              >Selaa ravintoloita</a
+            >
+          </div>
         </div>
       </section>
 
