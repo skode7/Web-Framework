@@ -21,4 +21,13 @@ const createRestaurantCard = (restaurant) => {
   return article;
 };
 
-export {showRestaurant, createRestaurantCard};
+const showRestaurantInGrid = async (restaurant) => {
+  const restaurantSection = document.querySelector('.restaurant-grid');
+
+  if (!restaurant) {
+    restaurantSection.innerHTML = '<h2>Please try again</h2>';
+  }
+
+  restaurantSection.append(restaurant);
+};
+export {showRestaurant, createRestaurantCard, showRestaurantInGrid};

@@ -13,4 +13,4 @@ const getRestaurants = async () => {
   return data;
 };
 
-export {getRestaurants};
+export default getRestaurants;
