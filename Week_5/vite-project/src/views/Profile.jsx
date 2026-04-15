@@ -21,7 +21,7 @@ const Profile = (props) => {
   }, []);
 
   if (!user) {
-    return <div>Ladataan profiilia..</div>;
+    return <div>Et ole kirjautunut sisään..</div>;
   }
   return (
     <>
