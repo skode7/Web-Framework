@@ -1,8 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import useForm from '../hooks/formHooks';
 import {useAuthentication} from '../hooks/apiHooks';
+import {useNavigate} from 'react-router-dom';
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
   const initValues = {
     username: '',
     password: '',
@@ -10,10 +13,12 @@ const LoginForm = () => {
 
   const doLogin = async () => {
     const {postLogin} = useAuthentication();
+
     try {
       const loginResult = await postLogin(inputs);
-      if (loginResult) {
+      if (loginResult.token) {
         localStorage.setItem('token', loginResult.token);
+        navigate('/');
       }
     } catch (error) {
       console.error({error: error});
