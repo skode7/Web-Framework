@@ -49,7 +49,6 @@ const useAuthentication = () => {
         import.meta.env.VITE_AUTH_API + '/auth/login',
         fetchOptions,
       );
-      console.log(loginResult);
       return loginResult;
     } catch (error) {
       console.error({error: error});
@@ -58,4 +57,21 @@ const useAuthentication = () => {
   return {postLogin};
 };
 
-export {useAuthentication, useMedia};
+const useUser = () => {
+  const getUserByToken = async (token) => {
+    const fetchOptions = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const userInfo = await fetchData(
+      import.meta.env.VITE_AUTH_API + '/users/token',
+      fetchOptions,
+    );
+    return userInfo;
+  };
+  return {getUserByToken};
+};
+
+export {useAuthentication, useMedia, useUser};
