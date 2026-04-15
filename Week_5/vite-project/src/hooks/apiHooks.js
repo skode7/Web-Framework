@@ -71,7 +71,27 @@ const useUser = () => {
     );
     return userInfo;
   };
-  return {getUserByToken};
+
+  const postUser = async (inputs) => {
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    };
+
+    try {
+      const dataJson = await fetchData(
+        import.meta.env.VITE_AUTH_API + '/users',
+        fetchOptions,
+      );
+      return dataJson;
+    } catch (error) {
+      console.error({error: error});
+    }
+  };
+  return {getUserByToken, postUser};
 };
 
 export {useAuthentication, useMedia, useUser};
