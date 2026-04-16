@@ -6,6 +6,6 @@ import babel from '@rolldown/plugin-babel';
 export default defineConfig(({command}) => {
   return {
     plugins: [react(), babel({presets: [reactCompilerPreset()]})],
-    base: command === 'build' ? '/~teemumpo/wsk-routing/forms/' : '/',
+    base: command === 'build' ? '/~teemumpo/wsk-routing/context/' : '/',
   };
 });
