@@ -1,7 +1,9 @@
 import {Link} from 'react-router';
+import {useUserContext} from '../hooks/contextHooks.js';
 
 const MediaRow = (props) => {
   const {item} = props;
+  const {user} = useUserContext();
   return (
     <tr
       key={item.media_id}
@@ -25,18 +27,23 @@ const MediaRow = (props) => {
         >
           Show
         </Link>
-        <button
-          onClick={() => console.log('modify', item)}
-          className="my-2.5 block rounded-md bg-stone-500 hover:bg-stone-700 p-1.5"
-        >
-          Modify
-        </button>
-        <button
-          onClick={() => console.log('delete', item)}
-          className="my-2.5 block rounded-md bg-stone-500 hover:bg-stone-700 p-1.5"
-        >
-          Delete
-        </button>
+        {((user && user.username === item.username) ||
+          user.username === 'admin') && (
+          <>
+            <button
+              onClick={() => console.log('modify', item)}
+              className="my-2.5 block rounded-md bg-stone-500 hover:bg-stone-700 p-1.5"
+            >
+              Modify
+            </button>
+            <button
+              onClick={() => console.log('delete', item)}
+              className="my-2.5 block rounded-md bg-stone-500 hover:bg-stone-700 p-1.5"
+            >
+              Delete
+            </button>
+          </>
+        )}
       </td>
     </tr>
   );
