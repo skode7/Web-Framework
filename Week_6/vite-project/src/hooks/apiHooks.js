@@ -63,7 +63,22 @@ const useMedia = () => {
       console.error(e);
     }
   };
-  return {mediaArray, postMedia};
+
+  //TODO: Etsi poistettavan median filename ja välitä se parametrina allaolevalle funktiolle!
+  const deleteMedia = async (filename, token) => {
+    const fetchOptions = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    console.log('filename', filename);
+    const result = await fetchData(
+      `${import.meta.env.VITE_UPLOAD_SERVER}/delete/${filename}`,
+      fetchOptions,
+    );
+    return result;
+  };
+  return {mediaArray, postMedia, deleteMedia};
 };
 
 const useAuthentication = () => {

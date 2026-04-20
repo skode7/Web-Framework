@@ -1,9 +1,11 @@
 import {Link} from 'react-router';
 import {useUserContext} from '../hooks/contextHooks.js';
+import {useMedia} from '../hooks/apiHooks.js';
 
 const MediaRow = (props) => {
   const {item} = props;
   const {user} = useUserContext();
+  const {deleteMedia} = useMedia();
   return (
     <tr
       key={item.media_id}
@@ -37,7 +39,9 @@ const MediaRow = (props) => {
               Modify
             </button>
             <button
-              onClick={() => console.log('delete', item)}
+              onClick={() => {
+                deleteMedia(item.filename);
+              }}
               className="my-2.5 block rounded-md bg-stone-500 hover:bg-stone-700 p-1.5"
             >
               Delete
