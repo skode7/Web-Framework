@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import useForm from '../hooks/formHooks';
-import {useAuthentication} from '../hooks/apiHooks';
-import {useNavigate} from 'react-router-dom';
+import {useUserContext} from '../hooks/contextHooks';
 
 const LoginForm = () => {
-  const navigate = useNavigate();
+  const {handleLogin} = useUserContext();
 
   const initValues = {
     username: '',
@@ -12,16 +11,10 @@ const LoginForm = () => {
   };
 
   const doLogin = async () => {
-    const {postLogin} = useAuthentication();
-
     try {
-      const loginResult = await postLogin(inputs);
-      if (loginResult.token) {
-        localStorage.setItem('token', loginResult.token);
-        navigate('/');
-      }
+      handleLogin(inputs);
     } catch (error) {
-      console.error({error: error});
+      alert(error.message);
     }
   };
 

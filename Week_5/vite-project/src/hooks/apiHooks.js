@@ -11,6 +11,7 @@ const getMedia = async () => {
 
 const useMedia = () => {
   const [mediaArray, setMediaArray] = useState([]);
+  const {postFile} = useFile();
 
   useEffect(() => {
     const loadMedia = async () => {
@@ -32,7 +33,37 @@ const useMedia = () => {
     loadMedia();
   }, []);
 
-  return {mediaArray};
+  const postMedia = async (file, inputs, token) => {
+    try {
+      const fileResponse = await postFile(file, token);
+      console.log('fileresponse', fileResponse.data);
+      console.log('inputs', inputs);
+      const mediaItem = {
+        title: inputs.title,
+        description: inputs.description,
+        filename: fileResponse.data.filename,
+        media_type: fileResponse.data.media_type,
+        filesize: fileResponse.data.filesize,
+      };
+
+      const fetchOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+        body: JSON.stringify(mediaItem),
+      };
+      const mediaResponse = await fetchData(
+        import.meta.env.VITE_MEDIA_API + '/media',
+        fetchOptions,
+      );
+      return mediaResponse;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  return {mediaArray, postMedia};
 };
 
 const useAuthentication = () => {
@@ -94,4 +125,29 @@ const useUser = () => {
   return {getUserByToken, postUser};
 };
 
-export {useAuthentication, useMedia, useUser};
+const useFile = () => {
+  const postFile = async (file, token) => {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const fetchOptions = {
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+        body: formData,
+      };
+      const result = await fetchData(
+        import.meta.env.VITE_UPLOAD_SERVER + '/upload',
+        fetchOptions,
+      );
+      console.log(result.data);
+      return result;
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  return {postFile};
+};
+
+export {useAuthentication, useMedia, useUser, useFile};
