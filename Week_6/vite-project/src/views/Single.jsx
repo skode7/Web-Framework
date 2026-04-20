@@ -17,7 +17,12 @@ const Single = () => {
         ) : (
           <img src={item.filename} />
         )}
-        <button onClick={() => navigate(-1)}>Go back</button>
+        <button
+          onClick={() => navigate(-1)}
+          className="my-2.5 block rounded-md bg-stone-500 hover:bg-stone-700 p-1.5"
+        >
+          Go back
+        </button>
       </dialog>
     </>
   );

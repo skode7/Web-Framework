@@ -59,7 +59,12 @@ const RegisterForm = () => {
             }}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button
+          className="my-2.5 block w-1/5 rounded-md bg-stone-500 hover:bg-stone-700 p-1.5"
+          type="submit"
+        >
+          Submit
+        </button>
       </form>
     </>
   );

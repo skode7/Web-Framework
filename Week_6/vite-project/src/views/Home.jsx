@@ -11,9 +11,9 @@ const Home = () => {
   return (
     <>
       <h2>My Media</h2>
-      <table>
+      <table className="w-full border-collapse">
         <thead>
-          <tr>
+          <tr className="*:p-4 *:border *:border-[#ccc] *:text-center">
             <th>Thumbnail</th>
             <th>Title</th>
             <th>Description</th>

@@ -13,7 +13,12 @@ const SingleView = (props) => {
         ) : (
           <img src={item.filename} />
         )}
-        <button onClick={() => setSelectedItem(null)}>close</button>
+        <button
+          onClick={() => setSelectedItem(null)}
+          className="my-2.5 block rounded-md bg-stone-500 hover:bg-stone-700 p-1.5"
+        >
+          close
+        </button>
       </dialog>
     </>
   );

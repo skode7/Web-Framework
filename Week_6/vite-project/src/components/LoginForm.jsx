@@ -62,7 +62,12 @@ const LoginForm = () => {
             autoComplete="current-password"
           />
         </div>
-        <button type="submit">Login</button>
+        <button
+          type="submit"
+          className="my-2.5 block w-1/5 rounded-md bg-stone-500 hover:bg-stone-700 p-1.5"
+        >
+          Login
+        </button>
       </form>
     </>
   );

@@ -16,7 +16,11 @@ const Login = () => {
 
       <p>
         {showLogin ? 'Eikö sinulla ole vielä tiliä?' : 'Onko sinulla jo tili?'}
-        <button onClick={toggleForm} style={{marginLeft: '10px'}}>
+        <button
+          onClick={toggleForm}
+          style={{marginLeft: '10px'}}
+          className="my-2.5 block w-1/5 rounded-md bg-stone-500 hover:bg-stone-700 p-1.5"
+        >
           {showLogin ? 'Rekisteröidy tästä' : 'Kirjaudu tästä'}
         </button>
       </p>
