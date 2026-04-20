@@ -45,7 +45,7 @@ const Layout = () => {
           <li>
             <button
               onClick={handleLogout}
-              className="hover:bg-black text-white no-underline block text-center p-2"
+              className="hover:bg-black text-white no-underline block text-center"
             >
               Logout
             </button>
