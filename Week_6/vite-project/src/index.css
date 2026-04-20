@@ -14,27 +14,14 @@
   }
 
   #root {
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
   }
 
-  table {
-    @apply w-full border-collapse;
-  }
-
-  th,
-  td {
-    @apply p-4 border border-[#ccc] text-center;
-  }
-
   input,
   textarea {
-    @apply my-2.5 p-2.5 border border-[#ccc] rounded-[5px] focus:outline-none focus:ring-2 focus:ring-blue-500 text-black;
-  }
-
-  button {
-    @apply my-2.5 p-2.5 rounded-[5px] bg-[#363636] text-white border-none cursor-pointer hover:bg-[#111111] transition-colors;
+    @apply my-2.5 p-2.5 border border-[#ccc] rounded-[5px] focus:outline-none focus:ring-2 focus:ring-blue-500 text-white;
   }
 
   img,
@@ -43,7 +30,7 @@
   }
 
   dialog {
-    @apply fixed inset-0 m-auto h-[90vh] w-[90vw] max-w-1000px bg-black/80 z-9999 text-white/85 border-none p-0 flex flex-col items-center justify-center;
+    @apply fixed inset-0 m-auto h-[90vh] w-[90vw] w-[1000px] bg-black/80 z-9999 text-white/85 border-none p-0 flex flex-col items-center justify-center;
   }
 
   dialog img,
@@ -52,16 +39,15 @@
   }
 
   td img {
-    @apply w-260px h-7200px object-cover mx-auto;
+    @apply w-[260px] h-[150px] object-cover mx-auto;
   }
 
   td a {
     @apply bg-[#363636] text-white no-underline border-none p-2 inline-block hover:bg-[#111111] transition-colors;
   }
 
-  /* Lomake */
   form img {
-    @apply w-200px h-200px object-cover rounded-5px my-10px;
+    @apply w-[200px] h-[200px] object-cover rounded-[5px] my-[10px];
   }
 
   form div {
