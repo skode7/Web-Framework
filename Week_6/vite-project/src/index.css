@@ -43,7 +43,7 @@
   }
 
   td a {
-    @apply bg-[#363636] text-white no-underline border-none p-2 inline-block hover:bg-[#111111] transition-colors;
+    @apply bg-[#363636] text-white no-underline border-none inline-block hover:bg-[#111111] transition-colors;
   }
 
   form img {
