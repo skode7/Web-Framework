@@ -36,8 +36,6 @@ const useMedia = () => {
   const postMedia = async (file, inputs, token) => {
     try {
       const fileResponse = await postFile(file, token);
-      console.log('fileresponse', fileResponse.data);
-      console.log('inputs', inputs);
       const mediaItem = {
         title: inputs.title,
         description: inputs.description,
