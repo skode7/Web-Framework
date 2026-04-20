@@ -13,10 +13,13 @@ const MediaRow = (props) => {
       <td>{item.filesize}</td>
       <td>{item.media_type}</td>
       <td>{item.username}</td>
+
       <td>
         <Link to="/single" state={{item}}>
           Show
         </Link>
+        <button onClick={() => console.log('modify', item)}>Modify</button>
+        <button onClick={() => console.log('delete', item)}>Delete</button>
       </td>
     </tr>
   );
