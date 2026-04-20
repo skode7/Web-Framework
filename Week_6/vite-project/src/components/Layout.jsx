@@ -4,9 +4,11 @@ const Layout = () => {
   return (
     <div>
       <nav>
-        <ul className="flex justify-end bg-[#333333] list-none text-white px-4 py-2">
+        <ul className="flex justify-end bg-[#333333] list-none *:hover:bg-black *:text-white px-4 py-2 gap-x-10 *:no-underline *:block *:text-center *:p-2">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" className=" ">
+              Home
+            </Link>
           </li>
           <li>
             <Link to="/profile">Profile</Link>
