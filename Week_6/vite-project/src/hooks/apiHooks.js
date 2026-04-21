@@ -9,13 +9,14 @@ const getMedia = async () => {
   }
 };
 
-const useMedia = () => {
+const useMedia = (loadMedia = true) => {
   const [mediaArray, setMediaArray] = useState([]);
   const {postFile} = useFile();
 
   useEffect(() => {
-    const loadMedia = async () => {
+    const loadMediaData = async () => {
       try {
+        console.log('load mediasta');
         const data = await getMedia();
         const mediaWithUsernames = await Promise.all(
           data.map(async (item) => {
@@ -30,8 +31,10 @@ const useMedia = () => {
         console.log({error: e});
       }
     };
-    loadMedia();
-  }, []);
+    if (loadMedia) {
+      loadMediaData();
+    }
+  }, [loadMedia]);
 
   const postMedia = async (file, inputs, token) => {
     try {
@@ -65,20 +68,38 @@ const useMedia = () => {
   };
 
   //TODO: Etsi poistettavan median filename ja välitä se parametrina allaolevalle funktiolle!
-  const deleteMedia = async (filename, token) => {
+
+  const deleteMedia = async (id, token) => {
     const fetchOptions = {
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
-    console.log('filename', filename);
     const result = await fetchData(
-      `${import.meta.env.VITE_UPLOAD_SERVER}/delete/${filename}`,
+      `${import.meta.env.VITE_MEDIA_API}/media/${id}`,
       fetchOptions,
     );
     return result;
   };
-  return {mediaArray, postMedia, deleteMedia};
+
+  const modifyMedia = async (id, inputs, token) => {
+    const fetchOptions = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(inputs),
+    };
+    const result = await fetchData(
+      `${import.meta.env.VITE_MEDIA_API}/media/${id}`,
+      fetchOptions,
+    );
+    return result;
+  };
+
+  return {mediaArray, postMedia, deleteMedia, modifyMedia};
 };
 
 const useAuthentication = () => {

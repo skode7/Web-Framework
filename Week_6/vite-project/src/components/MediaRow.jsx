@@ -1,11 +1,27 @@
 import {Link} from 'react-router';
+import {useNavigate} from 'react-router';
 import {useUserContext} from '../hooks/contextHooks.js';
 import {useMedia} from '../hooks/apiHooks.js';
 
 const MediaRow = (props) => {
   const {item} = props;
   const {user} = useUserContext();
-  const {deleteMedia} = useMedia();
+  const {deleteMedia} = useMedia(false);
+  const navigate = useNavigate();
+
+  const deleteItem = async () => {
+    try {
+      if (confirm('Poistetaanko', item.title, '?')) {
+        const token = localStorage.getItem('token');
+        await deleteMedia(item.media_id, token);
+        alert(item.title + ' poistettu!');
+        navigate(0);
+      }
+    } catch (error) {
+      console.log({error: error});
+    }
+  };
+
   return (
     <tr
       key={item.media_id}
@@ -32,16 +48,13 @@ const MediaRow = (props) => {
         {((user && user.username === item.username) ||
           user.username === 'admin') && (
           <>
-            <button
-              onClick={() => console.log('modify', item)}
-              className="my-2.5 block rounded-md bg-stone-500 hover:bg-stone-700 p-1.5"
-            >
-              Modify
+            <button className="my-2.5 block rounded-md bg-stone-500 hover:bg-stone-700 p-1.5">
+              <Link to="/modify" state={{item}}>
+                Modify
+              </Link>
             </button>
             <button
-              onClick={() => {
-                deleteMedia(item.filename);
-              }}
+              onClick={deleteItem}
               className="my-2.5 block rounded-md bg-stone-500 hover:bg-stone-700 p-1.5"
             >
               Delete

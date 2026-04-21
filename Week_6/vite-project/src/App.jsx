@@ -6,6 +6,7 @@ import Single from './views/Single.jsx';
 import Login from './views/Login.jsx';
 import Layout from './components/Layout.jsx';
 import {UserProvider} from './contexts/UserContext.jsx';
+import Modify from './views/Modify.jsx';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
               <Route path="/upload" element={<Upload />} />
               <Route path="/single" element={<Single />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/modify" element={<Modify />} />
             </Route>
           </Routes>
         </UserProvider>
