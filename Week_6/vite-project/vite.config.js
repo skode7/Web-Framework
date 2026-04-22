@@ -11,6 +11,7 @@ export default defineConfig(({command}) => {
       babel({presets: [reactCompilerPreset()]}),
       tailwindcss(),
     ],
-    base: command === 'build' ? '/~teemumpo/wsk-routing/forms/' : '/',
+    //base: command === 'build' ? '/~teemumpo/wsk-routing/tailwind/' : '/',
+    base: '/~teemumpo/wsk-routing/tailwind/',
   };
 });
