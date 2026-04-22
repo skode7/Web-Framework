@@ -1,11 +1,14 @@
 import {useEffect, useRef} from 'react';
 import {useLocation, useNavigate} from 'react-router';
+import {useUserContext} from '../hooks/contextHooks.js';
 import Likes from '../components/Likes';
+
 const Single = () => {
   const {state} = useLocation();
   const item = state?.item;
   const dialogRef = useRef();
   const navigate = useNavigate();
+  const {user} = useUserContext();
 
   useEffect(() => {
     if (item && dialogRef.current) {
@@ -25,7 +28,7 @@ const Single = () => {
         ) : (
           <img src={item.filename} />
         )}
-        <Likes media_id={item.media_id} />
+        {user && <Likes media_id={item.media_id} />}
 
         <button
           onClick={() => navigate(-1)}

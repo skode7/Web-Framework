@@ -6,6 +6,7 @@ const Likes = ({media_id}) => {
   const [userLike, setUserLike] = useState(null); // store the like object
   const {getLikesCount, postLike, getUserLike, deleteLike} = useLike();
   const token = localStorage.getItem('token');
+  const [updateLike, setUpdateLike] = useState(false);
 
   useEffect(() => {
     const getLikes = async () => {
@@ -17,43 +18,51 @@ const Likes = ({media_id}) => {
       }
     };
     getLikes();
-  }, [userLike]);
+  }, [updateLike, media_id, getLikesCount]);
 
   useEffect(() => {
     const fetchUserLike = async () => {
       try {
+        if (!token) {
+          return;
+        }
         const userLikeResponse = await getUserLike(media_id, token);
-        setUserLike(userLikeResponse);
-      } catch (error) {
-        console.log({error: error});
+
+        if (
+          userLikeResponse &&
+          userLikeResponse.like_id &&
+          !userLikeResponse.message
+        ) {
+          setUserLike(userLikeResponse);
+        } else {
+          setUserLike(null);
+        }
+      } catch (e) {
         setUserLike(null);
       }
     };
 
-    if (token) {
-      fetchUserLike();
-    }
-  }, [media_id, token]);
+    fetchUserLike();
+  }, [updateLike, media_id, token]);
+
+  console.log('userLike', userLike);
 
   const handleClick = async () => {
     try {
       if (userLike) {
         const deleteResult = await deleteLike(userLike.like_id, token);
-        console.log(deleteResult);
+        console.log('deleteResult:', deleteResult);
         setUserLike(null);
-        getLikes(); // refetch likes count
+        setUpdateLike((prev) => !prev);
       } else {
-        const postResult = await postLike(media_id, token);
-        console.log(postResult);
-        // refetch user like to get the like object with like_id
-        const userLikeResponse = await getUserLike(media_id, token);
-        setUserLike(userLikeResponse);
-        getLikes(); // refetch likes count
+        await postLike(media_id, token);
+        setUpdateLike((prev) => !prev);
       }
     } catch (error) {
       console.log({error: error});
     }
   };
+
   return (
     <button
       onClick={handleClick}

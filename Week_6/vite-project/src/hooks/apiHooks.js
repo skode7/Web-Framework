@@ -224,7 +224,7 @@ const useLike = () => {
     };
 
     return await fetchData(
-      import.meta.env.VITE_MEDIA_API + '/likes/user/media/' + media_id,
+      import.meta.env.VITE_MEDIA_API + '/likes/bymedia/user/' + media_id,
       fetchOptions,
     );
   };
