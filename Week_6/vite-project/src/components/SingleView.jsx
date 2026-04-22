@@ -1,3 +1,5 @@
+import Likes from '../components/Likes';
+
 const SingleView = (props) => {
   const {item, setSelectedItem} = props;
 

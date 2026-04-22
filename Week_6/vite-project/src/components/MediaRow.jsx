@@ -2,6 +2,7 @@ import {Link} from 'react-router';
 import {useNavigate} from 'react-router';
 import {useUserContext} from '../hooks/contextHooks.js';
 import {useMedia} from '../hooks/apiHooks.js';
+import Likes from './Likes.jsx';
 
 const MediaRow = (props) => {
   const {item} = props;
@@ -45,8 +46,8 @@ const MediaRow = (props) => {
         >
           Show
         </Link>
-        {((user && user.username === item.username) ||
-          user.username === 'admin') && (
+        {((user && user?.username === item?.username) ||
+          user?.username === 'admin') && (
           <>
             <button className="my-2.5 block rounded-md bg-stone-500 hover:bg-stone-700 p-1.5">
               <Link to="/modify" state={{item}}>
@@ -55,7 +56,7 @@ const MediaRow = (props) => {
             </button>
             <button
               onClick={deleteItem}
-              className="my-2.5 block rounded-md bg-stone-500 hover:bg-stone-700 p-1.5"
+              className="flex my-2.5 rounded-md bg-stone-500 hover:bg-stone-700 p-1.5"
             >
               Delete
             </button>

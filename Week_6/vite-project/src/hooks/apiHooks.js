@@ -186,4 +186,59 @@ const useFile = () => {
   return {postFile};
 };
 
-export {useAuthentication, useMedia, useUser, useFile};
+const useLike = () => {
+  const postLike = async (media_id, token) => {
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({media_id}),
+    };
+    return await fetchData(
+      import.meta.env.VITE_MEDIA_API + '/likes',
+      fetchOptions,
+    );
+  };
+  const deleteLike = async (like_id, token) => {
+    const fetchOptions = {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    return await fetchData(
+      import.meta.env.VITE_MEDIA_API + '/likes/' + like_id,
+      fetchOptions,
+    );
+  };
+
+  const getUserLike = async (media_id, token) => {
+    const fetchOptions = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    return await fetchData(
+      import.meta.env.VITE_MEDIA_API + '/likes/user/media/' + media_id,
+      fetchOptions,
+    );
+  };
+
+  const getLikesCount = async (media_id) => {
+    try {
+      return await fetchData(
+        import.meta.env.VITE_MEDIA_API + '/likes/count/' + media_id,
+      );
+    } catch (error) {
+      console.log({error: error});
+    }
+  };
+
+  return {postLike, deleteLike, getUserLike, getLikesCount};
+};
+export {useAuthentication, useMedia, useUser, useFile, useLike};

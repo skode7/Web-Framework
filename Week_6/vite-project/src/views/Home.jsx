@@ -1,11 +1,9 @@
 import {useEffect, useState} from 'react';
 import MediaRow from '../components/MediaRow';
 import PropTypes from 'prop-types';
-import Single from './Single.jsx';
 import {useMedia} from '../hooks/apiHooks.js';
 
 const Home = () => {
-  const [selectedItem, setSelectedItem] = useState(null);
   const {mediaArray} = useMedia(true);
 
   return (
@@ -28,12 +26,10 @@ const Home = () => {
             <MediaRow
               key={item.media_id}
               item={item}
-              setSelectedItem={setSelectedItem}
             />
           ))}
         </tbody>
       </table>
-      {selectedItem && <Single item={selectedItem} />}
     </>
   );
 };
