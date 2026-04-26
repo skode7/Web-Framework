@@ -1,8 +1,8 @@
-const baseURL = 'https://media2.edu.metropolia.fi/restaurant';
+import {BASE_URL as baseURL} from '../config/config.js';
 
-const getRestaurants = async () => {
+export const getRestaurants = async () => {
   const endPoint = '/api/v1/restaurants';
-  let data = [];
+  let data;
 
   try {
     const response = await fetch(baseURL + endPoint);
@@ -13,4 +13,20 @@ const getRestaurants = async () => {
   return data;
 };
 
-export default getRestaurants;
+export const fetchData = async (endPoint, options = {}) => {
+  const defaultOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    ...options,
+  };
+
+  try {
+    console.log(`${baseURL}${endPoint}`);
+    const response = await fetch(`${baseURL}${endPoint}`, defaultOptions);
+    return await response.json();
+  } catch (error) {
+    console.log('error in fetch at fetchData!', error);
+  }
+};

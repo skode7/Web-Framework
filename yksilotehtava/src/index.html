@@ -5,16 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Campus Restaurants</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
     <script type="module" src="main.js"></script>
   </head>
   <body>
     <header class="headerbar">
       <h1>Lounas.io</h1>
       <nav class="navbar">
-        <a class="bar" href="#home">Home</a>
-        <a class="bar" href="#find-nearest">Find nearest</a>
-        <a class="bar" href="#restaurants">Restaurants</a>
-        <a class="bar" href="#login">Login</a>
+        <a class="bar" href="#home">Etusivu</a>
+        <a class="bar" href="#find-nearest">Etsi lähin</a>
+        <a class="bar" href="#restaurants">Ravintolat</a>
+        <a class="bar" href="#login">Kirjaudu</a>
       </nav>
     </header>
     <main>
@@ -28,15 +32,64 @@
 
             <div class="hero-features">
               <div class="feature">
-                <span>📍</span>
+                <span class="feature-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </span>
                 <p>Lähimmät</p>
               </div>
               <div class="feature">
-                <span>🍽️</span>
+                <span class="feature-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+                    <path d="M7 2v20" />
+                    <path
+                      d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"
+                    />
+                  </svg>
+                </span>
                 <p>Menut</p>
               </div>
               <div class="feature">
-                <span>❤️</span>
+                <span class="feature-icon"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+                    />
+                  </svg>
+                </span>
                 <p>Suosikit</p>
               </div>
             </div>
@@ -49,20 +102,55 @@
       </section>
 
       <section class="find-nearest-section" id="find-nearest">
+        <div class="map-controls">
+          <button id="show-nearest-btn" class="cta-button">
+            Näytä lähimmät ravintolat
+          </button>
+        </div>
         <div id="map"></div>
-        <p>Map here</p>
       </section>
 
       <section class="restaurants-section" id="restaurants">
         <dialog class="restaurant-dialog"></dialog>
         <div class="restaurant-section-menu"></div>
+        <div class="filter-container">
+          <div class="search-box">
+            <input
+              type="text"
+              id="restaurant-search"
+              placeholder="Hae nimellä tai osoitteella..."
+            />
+          </div>
+
+          <div class="filter-group">
+            <select id="city-filter">
+              <option value="all">Kaikki kaupungit</option>
+              <option value="Helsinki">Helsinki</option>
+              <option value="Espoo">Espoo</option>
+              <option value="Vantaa">Vantaa</option>
+            </select>
+
+            <select id="company-filter">
+              <option value="all">Kaikki ketjut</option>
+              <option value="Sodexo">Sodexo</option>
+              <option value="Compass Group">Compass Group</option>
+            </select>
+
+            <label class="fav-checkbox-label">
+              <input type="checkbox" id="only-favorites" />
+              <span class="fav-text">Näytä vain suosikit</span>
+            </label>
+          </div>
+        </div>
         <div class="restaurant-grid"></div>
       </section>
 
       <section class="login-section" id="login">
         <div class="login-card">
-          <h2>Kirjaudu sisään</h2>
+          <div class="auth-tabs"></div>
           <form id="login-form">
+            <h2>Kirjaudu sisään</h2>
+
             <div class="input-group">
               <label for="username">Käyttäjätunnus</label>
               <input
@@ -83,12 +171,112 @@
               />
             </div>
 
-            <button type="submit" id="loginButton">Kirjaudu</button>
+            <button
+              class="cta-button"
+              type="submit"
+              class="auth-tab active"
+              id="sign-in"
+            >
+              Kirjaudu
+            </button>
 
             <p class="form-footer">
-              Eikö tunnusta? <a href="#">Rekisteröidy</a>
+              Eikö tunnusta? <button id="tab-register">Rekisteröidy</button>
             </p>
           </form>
+
+          <form id="register-form" class="hidden">
+            <h2>Rekisteröidy</h2>
+
+            <div class="input-group">
+              <label for="reg-username">Käyttäjätunnus</label>
+              <input
+                type="text"
+                id="reg-username"
+                name="username"
+                placeholder="Valitse tunnus"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="reg-email">Sähköposti</label>
+              <input
+                type="email"
+                id="reg-email"
+                name="email"
+                placeholder="esimerkki@metropolia.fi"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="reg-password">Salasana</label>
+              <input
+                type="password"
+                id="reg-password"
+                name="password"
+                placeholder="Syötä salasana"
+                required
+              />
+            </div>
+
+            <button type="submit" class="cta-button" id="registerButton">
+              Luo tili
+            </button>
+            <p class="form-footer">
+              Tunnus jo olemassa?
+              <button class="auth-tab" id="tab-login">Kirjaudu sisään</button>
+            </p>
+          </form>
+
+          <p id="auth-error" class="error-text hidden"></p>
+        </div>
+      </section>
+
+      <section class="profile-section hidden" id="profile">
+        <div class="profile-card">
+          <h2>Omat tiedot</h2>
+
+          <div class="profile-avatar-container">
+            <img
+              id="profile-img-preview"
+              src="default-avatar.png"
+              alt="Avatar"
+            />
+            <form id="avatar-form">
+              <label for="avatar-input" class="file-label">Vaihda kuva</label>
+              <input
+                type="file"
+                id="avatar-input"
+                name="avatar"
+                accept="image/*"
+              />
+              <button type="submit" class="cta-button small">
+                Tallenna kuva
+              </button>
+            </form>
+          </div>
+
+          <hr />
+
+          <form id="update-user-form">
+            <div class="input-group">
+              <label for="update-username">Käyttäjätunnus</label>
+              <input type="text" id="update-username" name="username" />
+            </div>
+            <div class="input-group">
+              <label for="update-email">Sähköposti</label>
+              <input type="email" id="update-email" name="email" />
+            </div>
+            <button id="update-profile-data" type="submit" class="cta-button">
+              Päivitä tiedot
+            </button>
+          </form>
+
+          <button id="logout-btn" class="secondary-button">
+            Kirjaudu ulos
+          </button>
         </div>
       </section>
     </main>
