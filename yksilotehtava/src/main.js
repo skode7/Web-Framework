@@ -194,7 +194,6 @@ const main = async () => {
   if (browseBtn) {
     browseBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      console.log('Selaa ravintoloita klikattu');
 
       changePage('restaurants');
 
@@ -312,7 +311,6 @@ const main = async () => {
         });
       }
 
-      // Valinnainen: Jos sinulla on uloskirjautumis-nappi HTML:ssä (esim. id="logout-btn")
       const logoutBtn = document.querySelector('#logout-btn');
       if (logoutBtn) {
         logoutBtn.classList.remove('hidden');
