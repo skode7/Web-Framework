@@ -60,6 +60,89 @@ section.active {
   margin-bottom: 20px;
 }
 
+.map-controls {
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(25deg, black, gray);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+
+.nearest-results {
+  width: 100%;
+  max-width: 1000px;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid var(--glass-border);
+}
+
+.nearest-results h3 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.nearest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nearest-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.nearest-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nearest-item .rank {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #667eea;
+  min-width: 40px;
+}
+
+.nearest-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.nearest-info span {
+  opacity: 0.8;
+}
+
+.user-marker {
+  font-size: 24px;
+}
+
 .restaurant-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -257,4 +340,8 @@ section.active {
 .feature p {
   font-size: 0.8rem;
   opacity: 0.8;
+}
+.cta-button {
+  color: white;
+  text-decoration: none;
 }
