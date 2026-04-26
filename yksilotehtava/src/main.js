@@ -26,7 +26,6 @@ const main = async () => {
   const heroFeatures = document.querySelectorAll('.feature');
   const onlyFavsCheckbox = document.querySelector('#only-favorites');
   const favIds = getFavorites();
-  const loginButton = document.querySelector('#sign-in');
   const loginForm = document.querySelector('#login-form');
   const regForm = document.querySelector('#register-form');
   const token = sessionStorage.getItem('token');
@@ -153,7 +152,6 @@ const main = async () => {
     const formData = new FormData(form);
     const values = Object.fromEntries(formData.entries());
     const isLogin = form.id === 'login-form';
-    console.log('values', values);
 
     try {
       if (isLogin) {
@@ -181,7 +179,7 @@ const main = async () => {
         }
       }
     } catch (error) {
-      console.log({error: error});
+      console.error({error: error});
     }
   };
 
@@ -197,7 +195,7 @@ const main = async () => {
     const token = sessionStorage.getItem('token');
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    console.log('formdata', data);
+
     try {
       const options = {
         method: 'PUT',
@@ -208,7 +206,6 @@ const main = async () => {
         body: JSON.stringify(data),
       };
       const result = await fetchData(USER, options);
-      console.log('result', result);
       if (result) {
         alert('Tiedot päivitetty!');
         await loadProfileData();
@@ -217,7 +214,6 @@ const main = async () => {
       alert('Tietojen päivitys epäonnistui.');
     }
   };
-  // 1. Haetaan käyttäjän nykyiset tiedot, kun profiilisivu avataan
   async function loadProfileData() {
     const token = sessionStorage.getItem('token');
     if (!token) return;
@@ -227,13 +223,11 @@ const main = async () => {
       const userData = await fetchData(`${USER}/token`, {
         headers: {Authorization: `Bearer ${token}`},
       });
-      console.log('ladattu data', userData);
 
       if (userData) {
         document.getElementById('update-username').value = userData.username;
         document.getElementById('update-email').value = userData.email;
         if (userData.avatar) {
-          //const imgElement = document.getElementById('profile-img-preview');
           const fullImageUrl = `${BASE_URL}/uploads/${userData.avatar}`;
           document.getElementById('profile-img-preview').src = fullImageUrl;
         } else {
@@ -306,30 +300,25 @@ const main = async () => {
       const logoutBtn = document.querySelector('#logout-btn');
       if (logoutBtn) {
         logoutBtn.classList.remove('hidden');
-        logoutBtn.onclick = () => {
+        logoutBtn.addEventListener('click', (event) => {
           sessionStorage.removeItem('token');
-          location.reload(); // Päivittää sivun ja nollaa tilan
-        };
+          location.reload();
+        });
       }
     } else {
       if (loginLink) {
         loginLink.textContent = 'Kirjaudu';
         loginLink.setAttribute('href', '#login');
-        loginLink.onclick = null; // Poistetaan profiili-linkin erityistoiminto
+        loginLink.onclick = null;
       }
     }
   }
   if (token) {
-    console.log('Token löytyi, suoritetaan auto-login...');
     try {
       await loadProfileData();
 
       updateNavigation();
-
-      // Jos haluat, että sivu hyppää suoraan profiiliin:
-      // changePage('profile');
-    } catch (err) {
-      console.log('Token vanhentunut tai virheellinen, poistetaan se.');
+    } catch {
       sessionStorage.removeItem('token');
       updateNavigation();
     }
