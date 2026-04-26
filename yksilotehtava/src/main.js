@@ -29,6 +29,7 @@ const main = async () => {
   const loginForm = document.querySelector('#login-form');
   const regForm = document.querySelector('#register-form');
   const token = sessionStorage.getItem('token');
+  const browseBtn = document.querySelector('#start-browsing');
 
   restaurantsWithDistance.forEach((restaurant) => {
     showRestaurantInGrid(createRestaurantCard(restaurant));
@@ -189,6 +190,22 @@ const main = async () => {
   regForm.addEventListener('submit', (e) => {
     handleAuthSubmit(e);
   });
+
+  if (browseBtn) {
+    browseBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log('Selaa ravintoloita klikattu');
+
+      changePage('restaurants');
+
+      const restaurantNavLink = document.querySelector(
+        'a[href="#restaurants"]'
+      );
+      if (restaurantNavLink) {
+        restaurantNavLink.click();
+      }
+    });
+  }
 
   const handleUpdateUser = async (e) => {
     e.preventDefault();
