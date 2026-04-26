@@ -69,6 +69,20 @@ export const showUserLocation = (map, lat, lon) => {
   map.setView([lat, lon], 14);
 };
 
+export const addDistanceToRestaurants = async (restaurants) => {
+  const {lat, lon} = await getUserPosition();
+
+  return restaurants.map((restaurant) => {
+    const distance = calculateDistance(
+      Number(lat),
+      Number(lon),
+      Number(restaurant.location.coordinates[1]),
+      Number(restaurant.location.coordinates[0])
+    );
+    return {...restaurant, distance};
+  });
+};
+
 export const findNearestRestaurants = (restaurants, userLat, userLon) => {
   return restaurants
     .filter(
@@ -158,7 +172,6 @@ export const handleNearestRestaurants = async (restaurants) => {
       userCoords.lat,
       userCoords.lon
     );
-    console.log('nearests', nearest);
 
     const zoomGroup = L.featureGroup([
       L.marker([userCoords.lat, userCoords.lon]), // Käyttäjä mukaan
@@ -173,5 +186,25 @@ export const handleNearestRestaurants = async (restaurants) => {
   } catch (error) {
     console.error('Virhe lähimpien ravintoloiden hakemisessa:', error);
   }
+};
+
+export const initModalMap = (res) => {
+  const lat = res.location.coordinates[1];
+  const lon = res.location.coordinates[0];
+
+  setTimeout(() => {
+    const modalMap = L.map('modal-map', {
+      zoomControl: false, // Pidetään simppelinä
+      attributionControl: false, // Ei turhaa tekstiä pieneen tilaan
+    }).setView([lat, lon], 15);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(
+      modalMap
+    );
+
+    L.marker([lat, lon]).addTo(modalMap);
+
+    modalMap.invalidateSize();
+  }, 100);
 };
 export const getMap = () => mapInstance;

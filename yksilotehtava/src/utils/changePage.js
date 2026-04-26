@@ -3,9 +3,13 @@ const changePage = (pageId) => {
 
   sections.forEach((s) => {
     s.classList.remove('active');
+    s.classList.add('hidden'); // Piilota
   });
   const target = document.getElementById(pageId);
-  target.classList.add('active');
+  if (target) {
+    target.classList.add('active');
+    target.classList.remove('hidden');
+  }
   window.location.hash = pageId;
 };
 export default changePage;
