@@ -219,7 +219,6 @@ const main = async () => {
     if (!token) return;
 
     try {
-      // Huom: Käytetään aiempaa fetchData-funktiota
       const userData = await fetchData(`${USER}/token`, {
         headers: {Authorization: `Bearer ${token}`},
       });

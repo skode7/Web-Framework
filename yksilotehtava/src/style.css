@@ -77,7 +77,6 @@ section.active {
   align-items: center;
 }
 
-/* 3. KOMPONENTIT: KARTTA JA PAINIKKEET */
 #map {
   width: 100%;
   max-width: 1000px;
@@ -146,7 +145,7 @@ section.active {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
-  display: flex; /* Varmistaa, ettei flex sotke asettelua */
+  display: flex;
 }
 
 .card-title {
@@ -183,7 +182,6 @@ section.active {
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* 5. MODAALI (DIALOG) */
 .restaurant-dialog {
   margin: auto;
   border: none;
@@ -354,7 +352,7 @@ section.active {
   display: flex;
   justify-content: space-around;
   margin: 30px 0;
-  cursor: pointer; /* Osoittaa käyttäjälle, että tätä voi klikata */
+  cursor: pointer;
   transition: transform 0.3s ease;
 }
 .feature-icon {
@@ -428,13 +426,13 @@ section.active {
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
   position: relative;
-  transform: scale(1.02); /* Tehdään siitä aavistuksen isompi */
+  transform: scale(1.02);
 }
 
 .nearest-badge {
   display: inline-block;
   background: white;
-  color: black; /* Kontrasti valkoista vasten */
+  color: black;
   font-size: 0.6rem;
   font-weight: 800;
   padding: 2px 6px;
@@ -455,15 +453,14 @@ section.active {
 }
 
 .card-header {
-  padding-right: 30px; /* Jätetään tilaa sydämelle, ettei otsikko mene päälle */
+  padding-right: 30px;
 }
 
-/* Poistetaan se valkoinen neliö ja fiksataan rivitys */
 .fav-filter-group {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 150px; /* Estää tekstin pirstoutumisen liian monelle riville */
+  min-width: 150px;
 }
 
 .fav-checkbox-label {
@@ -476,7 +473,7 @@ section.active {
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid var(--glass-border);
   transition: all 0.3s ease;
-  white-space: nowrap; /* Pitää tekstin yhdellä rivillä */
+  white-space: nowrap;
   outline: none;
 }
 
@@ -485,9 +482,8 @@ section.active {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Tyylitellään itse checkbox-ruutu */
 .fav-checkbox-label input[type='checkbox'] {
-  appearance: none; /* Poistaa selaimen oletuslookin */
+  appearance: none;
   width: 20px;
   height: 20px;
   border: 2px solid rgba(255, 255, 255, 0.5);
@@ -498,13 +494,11 @@ section.active {
   transition: all 0.2s;
 }
 
-/* Checkbox kun se on valittuna */
 .fav-checkbox-label input[type='checkbox']:checked {
   background: #ff4d4d; /* Punainen korostusväri */
   border-color: #ff4d4d;
 }
 
-/* Lisätään pieni valkoinen "väkänen" kun valittu */
 .fav-checkbox-label input[type='checkbox']:checked::after {
   content: '✓';
   position: absolute;
@@ -552,10 +546,10 @@ section.active {
 
 .profile-card {
   max-width: 450px;
-  margin: 100px auto; /* Enemmän tilaa yläreunaan */
+  margin: 100px auto;
   padding: 30px;
-  background: rgba(0, 0, 0, 0.7); /* Tummempi tausta, jotta teksti erottuu */
-  backdrop-filter: blur(10px); /* Hieno lasiefekti */
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
@@ -576,15 +570,14 @@ section.active {
   object-fit: cover;
   border: 3px solid #ff4d4d;
   margin-bottom: 15px;
-  background-color: #333; /* Jos kuva puuttuu, näkyy tumma tausta */
+  background-color: #333;
 }
 
-/* Lomakkeen kenttien asettelu */
 #update-user-form {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Tilaa kenttien väliin */
-  text-align: left; /* Tekstit vasemmalle */
+  gap: 15px;
+  text-align: left;
 }
 
 .input-group {
@@ -605,8 +598,6 @@ section.active {
   background: rgba(255, 255, 255, 0.05);
   color: white;
 }
-
-/* Napit haltuun */
 
 .secondary-button {
   margin-top: 20px;
