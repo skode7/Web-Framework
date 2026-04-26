@@ -2,7 +2,6 @@ import {fetchData} from './apiClient.js';
 import {CHECK_USERNAME_AVAILABILITY, LOGIN, USER} from '../config/config.js';
 
 export const login = async (values) => {
-  console.log(values);
   const options = {
     method: 'POST',
     headers: {
@@ -27,9 +26,8 @@ export const checkUsernameAvailability = async (username) => {
 };
 
 export const createUser = async (values) => {
-  const {username, password, email} = values;
+  const {username} = values;
   const {available} = await checkUsernameAvailability(username);
-  console.log(available);
 
   const options = {
     method: 'POST',

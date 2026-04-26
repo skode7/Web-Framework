@@ -3,7 +3,7 @@ const changePage = (pageId) => {
 
   sections.forEach((s) => {
     s.classList.remove('active');
-    s.classList.add('hidden'); // Piilota
+    s.classList.add('hidden');
   });
   const target = document.getElementById(pageId);
   if (target) {
