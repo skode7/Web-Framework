@@ -9,3 +9,5 @@ export const CHECK_USERNAME_AVAILABILITY = USER + '/available';
 export const LOGIN = '/api/v1/auth/login';
 
 export const UPLOAD_AVATAR = USER + '/avatar';
+
+export const GET_DAILY_MENU = GET_RESTAURANTS + '/daily/';

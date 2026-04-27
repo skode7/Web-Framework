@@ -1,6 +1,7 @@
 import {initModalMap} from '../utils/mapUtils.js';
 import {fetchData} from '../utils/apiClient.js';
 import {getFavorites, toggleFavorite} from '../utils/favorites.js';
+import {GET_DAILY_MENU} from '../config/config.js';
 
 const ICONS = {
   LOCATION:
@@ -17,9 +18,9 @@ const openRestaurantModal = async (res) => {
   let dailyMenu;
 
   try {
-    dailyMenu = await fetchData(`api/v1/restaurants/daily/${_id}/fi`);
+    dailyMenu = await fetchData(`${GET_DAILY_MENU}${_id}/fi`);
   } catch {
-    console.warn('Päivän ruokalistan haku epäonnistui');
+    //
   }
 
   dialog.innerHTML = `
@@ -76,11 +77,8 @@ const openRestaurantModal = async (res) => {
           `api/v1/restaurants/weekly/${_id}/fi`
         );
         renderWeeklyMenu(weeklyData?.days, menuContainer);
-      } catch (error) {
-        console.warn(
-          'Viikon listan haku epäonnistui, mutta ei se mitään.',
-          error
-        );
+      } catch {
+        //
       }
     } else {
       toggleBtn.textContent = 'Viikon lista';
@@ -97,7 +95,6 @@ const openRestaurantModal = async (res) => {
 };
 
 const renderMenu = (courses, container = null) => {
-  console.log('listat', courses);
   if (!courses || courses.length === 0)
     return '<p>Ei ruokalistaa saatavilla.</p>';
 

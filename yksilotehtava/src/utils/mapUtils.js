@@ -119,14 +119,12 @@ export const getUserPosition = () => {
 
   return new Promise((resolve) => {
     if (!navigator.geolocation) {
-      console.log('Sijaintia ei tueta, käytetään Helsinkiä');
       resolve(DEFAULT_LOCATION);
       return;
     }
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        console.log('Sijainti saatu:', position.coords);
         resolve({
           lat: position.coords.latitude,
           lon: position.coords.longitude,
@@ -161,7 +159,6 @@ export const handleNearestRestaurants = async (restaurants) => {
     const map = getMap();
 
     if (!map) {
-      console.error('Karttaa ei ole alustettu!');
       return;
     }
 
@@ -181,10 +178,8 @@ export const handleNearestRestaurants = async (restaurants) => {
     ]);
 
     map.fitBounds(zoomGroup.getBounds().pad(0.2));
-
-    console.log('Zoomattu lähimpiin, muut ravintolat säilyivät kartalla.');
-  } catch (error) {
-    console.error('Virhe lähimpien ravintoloiden hakemisessa:', error);
+  } catch {
+    //
   }
 };
 

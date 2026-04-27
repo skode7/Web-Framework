@@ -179,8 +179,8 @@ const main = async () => {
           document.getElementById('tab-login-btn').click();
         }
       }
-    } catch (error) {
-      console.error({error: error});
+    } catch {
+      //
     }
   };
 
@@ -217,7 +217,7 @@ const main = async () => {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json', // LISÄÄ TÄMÄ RIVI!
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       };
@@ -250,12 +250,10 @@ const main = async () => {
             'default-avatar.png';
         }
       }
-    } catch (err) {
-      console.error('Profiilin haku epäonnistui', err);
+    } catch {
+      //
     }
   }
-
-  // 2. Päivitetään tekstitiedot (JSON)
 
   const handleAvatarSubmit = async (e) => {
     e.preventDefault();
@@ -280,8 +278,8 @@ const main = async () => {
       const newFilename = response.data.avatar;
       const fullUrl = `${BASE_URL}/uploads/${newFilename}`;
       document.getElementById('profile-img-preview').src = fullUrl;
-    } catch (err) {
-      console.error('Kuvan lataus epäonnistui', err);
+    } catch {
+      //
     }
   };
 
@@ -314,7 +312,7 @@ const main = async () => {
       const logoutBtn = document.querySelector('#logout-btn');
       if (logoutBtn) {
         logoutBtn.classList.remove('hidden');
-        logoutBtn.addEventListener('click', (event) => {
+        logoutBtn.addEventListener('click', () => {
           sessionStorage.removeItem('token');
           location.reload();
         });

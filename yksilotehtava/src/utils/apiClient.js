@@ -1,14 +1,13 @@
-import {BASE_URL as baseURL} from '../config/config.js';
+import {BASE_URL, GET_RESTAURANTS} from '../config/config.js';
 
 export const getRestaurants = async () => {
-  const endPoint = '/api/v1/restaurants';
   let data;
 
   try {
-    const response = await fetch(baseURL + endPoint);
+    const response = await fetch(BASE_URL + GET_RESTAURANTS);
     data = await response.json();
-  } catch (error) {
-    console.log('error in fetch at getRestaurants!', error);
+  } catch {
+    //
   }
   return data;
 };
@@ -23,10 +22,9 @@ export const fetchData = async (endPoint, options = {}) => {
   };
 
   try {
-    console.log(`${baseURL}${endPoint}`);
-    const response = await fetch(`${baseURL}${endPoint}`, defaultOptions);
+    const response = await fetch(`${BASE_URL}${endPoint}`, defaultOptions);
     return await response.json();
-  } catch (error) {
-    console.log('error in fetch at fetchData!', error);
+  } catch {
+    //
   }
 };
