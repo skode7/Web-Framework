@@ -28,7 +28,7 @@ const main = async () => {
   const favIds = getFavorites();
   const loginForm = document.querySelector('#login-form');
   const regForm = document.querySelector('#register-form');
-  const token = sessionStorage.getItem('token');
+  const token = localStorage.getItem('token');
   const browseBtn = document.querySelector('#start-browsing');
 
   restaurantsWithDistance.forEach((restaurant) => {
@@ -158,7 +158,7 @@ const main = async () => {
       if (isLogin) {
         const loginResult = await login(values);
         if (loginResult && loginResult.token) {
-          sessionStorage.setItem('token', loginResult.token);
+          localStorage.setItem('token', loginResult.token);
           e.target.reset();
           changePage('profile');
           await loadProfileData();
@@ -208,7 +208,7 @@ const main = async () => {
 
   const handleUpdateUser = async (e) => {
     e.preventDefault();
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
@@ -231,7 +231,7 @@ const main = async () => {
     }
   };
   async function loadProfileData() {
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (!token) return;
 
     try {
@@ -245,9 +245,6 @@ const main = async () => {
         if (userData.avatar) {
           const fullImageUrl = `${BASE_URL}/uploads/${userData.avatar}`;
           document.getElementById('profile-img-preview').src = fullImageUrl;
-        } else {
-          document.getElementById('profile-img-preview').src =
-            'default-avatar.png';
         }
       }
     } catch {
@@ -257,7 +254,7 @@ const main = async () => {
 
   const handleAvatarSubmit = async (e) => {
     e.preventDefault();
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const fileInput = document.getElementById('avatar-input');
 
     if (fileInput.files.length === 0) {
@@ -294,7 +291,7 @@ const main = async () => {
   }
 
   function updateNavigation() {
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const loginLink = document.querySelector('a[href="#login"]');
 
     if (token) {
@@ -313,7 +310,7 @@ const main = async () => {
       if (logoutBtn) {
         logoutBtn.classList.remove('hidden');
         logoutBtn.addEventListener('click', () => {
-          sessionStorage.removeItem('token');
+          localStorage.removeItem('token');
           location.reload();
         });
       }
@@ -331,7 +328,7 @@ const main = async () => {
 
       updateNavigation();
     } catch {
-      sessionStorage.removeItem('token');
+      localStorage.removeItem('token');
       updateNavigation();
     }
   } else {

@@ -18,6 +18,12 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
   return R * c;
 };
 
+/**
+ * Initializes a new Leaflet map instance in the specified container.
+ * Removes any existing map instance first.
+ * @param {string} [containerId='map'] - The ID of the HTML element to contain the map.
+ * @returns {Object} The initialized Leaflet map instance.
+ */
 export const initMap = (containerId = 'map') => {
   if (mapInstance !== null) {
     mapInstance.remove();
@@ -33,6 +39,11 @@ export const initMap = (containerId = 'map') => {
   return mapInstance;
 };
 
+/**
+ * Adds markers for restaurants to the map with popups showing name and address.
+ * @param {Object[]} restaurants - Array of restaurant objects with location data.
+ * @param {Object} map - The Leaflet map instance to add markers to.
+ */
 export const addRestaurantMarkers = (restaurants, map) => {
   restaurants.forEach((restaurant) => {
     const lat = restaurant.location.coordinates[1];
@@ -46,6 +57,12 @@ export const addRestaurantMarkers = (restaurants, map) => {
     }
   });
 };
+/**
+ * Shows the user's location on the map with a red marker and centers the view.
+ * @param {Object} map - The Leaflet map instance.
+ * @param {number} lat - User's latitude.
+ * @param {number} lon - User's longitude.
+ */
 export const showUserLocation = (map, lat, lon) => {
   if (userMarker) {
     map.removeLayer(userMarker);
@@ -69,6 +86,11 @@ export const showUserLocation = (map, lat, lon) => {
   map.setView([lat, lon], 14);
 };
 
+/**
+ * Adds distance property to each restaurant based on user's current location.
+ * @param {Object[]} restaurants - Array of restaurant objects.
+ * @returns {Promise<Object[]>} Restaurants with added distance property.
+ */
 export const addDistanceToRestaurants = async (restaurants) => {
   const {lat, lon} = await getUserPosition();
 
@@ -83,6 +105,13 @@ export const addDistanceToRestaurants = async (restaurants) => {
   });
 };
 
+/**
+ * Finds the 5 nearest restaurants to the user's location.
+ * @param {Object[]} restaurants - Array of restaurant objects.
+ * @param {number} userLat - User's latitude.
+ * @param {number} userLon - User's longitude.
+ * @returns {Object[]} Array of the 5 nearest restaurants with distance property.
+ */
 export const findNearestRestaurants = (restaurants, userLat, userLon) => {
   return restaurants
     .filter(
@@ -102,6 +131,13 @@ export const findNearestRestaurants = (restaurants, userLat, userLon) => {
     .slice(0, 5);
 };
 
+/**
+ * Focuses the map view on a specific restaurant and opens its popup.
+ * @param {Object} map - The Leaflet map instance.
+ * @param {Object[]} restaurantMarkers - Array of marker objects with restaurant data.
+ * @param {number} lat - Restaurant latitude.
+ * @param {number} lon - Restaurant longitude.
+ */
 export const focusOnRestaurant = (map, restaurantMarkers, lat, lon) => {
   map.setView([lat, lon], 16);
   restaurantMarkers.forEach(({marker, restaurant}) => {
@@ -114,6 +150,10 @@ export const focusOnRestaurant = (map, restaurantMarkers, lat, lon) => {
   });
 };
 
+/**
+ * Gets the user's current geolocation or returns default coordinates.
+ * @returns {Promise<{lat: number, lon: number}>} User's position coordinates.
+ */
 export const getUserPosition = () => {
   const DEFAULT_LOCATION = {lat: 60.1699, lon: 24.9384};
 
@@ -141,6 +181,11 @@ export const getUserPosition = () => {
   });
 };
 
+/**
+ * Shows markers for the nearest restaurants on the map.
+ * @param {Object} map - The Leaflet map instance.
+ * @param {Object[]} restaurants - Array of restaurant objects to display.
+ */
 export const showNearestRestaurants = (map, restaurants) => {
   restaurants.forEach((res) => {
     if (res.location && res.location.lat && res.location.lon) {
@@ -153,6 +198,10 @@ export const showNearestRestaurants = (map, restaurants) => {
   });
 };
 
+/**
+ * Handles displaying the nearest restaurants on the map, including user location.
+ * @param {Object[]} restaurants - Array of all restaurant objects.
+ */
 export const handleNearestRestaurants = async (restaurants) => {
   try {
     const userCoords = await getUserPosition();
@@ -183,6 +232,10 @@ export const handleNearestRestaurants = async (restaurants) => {
   }
 };
 
+/**
+ * Initializes a modal map for a specific restaurant.
+ * @param {Object} res - Restaurant object with location data.
+ */
 export const initModalMap = (res) => {
   const lat = res.location.coordinates[1];
   const lon = res.location.coordinates[0];
@@ -202,4 +255,8 @@ export const initModalMap = (res) => {
     modalMap.invalidateSize();
   }, 100);
 };
+/**
+ * Returns the current map instance.
+ * @returns {Object|null} The Leaflet map instance or null if not initialized.
+ */
 export const getMap = () => mapInstance;

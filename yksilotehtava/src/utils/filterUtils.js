@@ -1,5 +1,10 @@
 import {createRestaurantCard} from '../components/components.js';
 
+/**
+ * Filters the list of restaurants based on search term, city, and company,
+ * then updates the restaurant grid with the filtered results.
+ * @param {Object[]} allRestaurants - Array of all restaurant objects to filter.
+ */
 export const filterRestaurants = (allRestaurants) => {
   const searchTerm = document
     .querySelector('#restaurant-search')
@@ -33,6 +38,9 @@ export const filterRestaurants = (allRestaurants) => {
   });
 };
 
+/**
+ * Clears all filter inputs by resetting search field and filter dropdowns to default values.
+ */
 export const clearFilters = () => {
   const searchInput = document.querySelector('#restaurant-search');
   const cityFilter = document.querySelector('#city-filter');
